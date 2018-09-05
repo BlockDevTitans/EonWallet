@@ -1,0 +1,66 @@
+{
+  "name": "EonWallet",
+  "version": "1.0.0",
+  "description": "Eon Wallet",
+  "author": "",
+  "repository": "",
+  "main": "main.js",
+  "devDependencies": {
+    "electron": "^1.4.1",
+    "electron-builder": "^20.28.2"
+  },
+  "dependencies": {
+    "angular": "^1.7.3",
+    "angular-route": "^1.7.3",
+    "electron-reload": "^1.2.5",
+    "node-ipc": "^9.1.1"
+  },
+  "scripts": {
+    "start": "electron .",
+    "dist": "build"
+  },
+  "build": {
+    "appId": "EonWallet",
+    "directories": {
+      "buildResources": "../../assets",
+      "output": "../../dist"
+    },
+    "extraResources": {
+      "from": "../api/bin/dist/",
+      "to": "api/bin/dist/",
+      "filter": [
+        "**/*"
+      ]
+    },
+    "mac": {
+      "category": "cross.platform.app"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    }
+  }
+}

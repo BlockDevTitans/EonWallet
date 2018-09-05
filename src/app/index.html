@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>EonWallet</title>
+</head>
+<body>
+    <div class="container" ng-controller="WalletCtrl as ctrl">
+        <button ng-click="ctrl.listNodes()">Load Nodes</button>
+        <h1>{{ctrl.Title}}</h1>
+        <p style="color: red" ng-show="ctrl.ErrorMessage">{{ctrl.ErrorMessage}}</p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="min-width: 80px;">Node address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="node in ctrl.Nodes">
+                    <td>{{ node }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+<script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>
+<script type="text/javascript" src="content/app.js"></script>
