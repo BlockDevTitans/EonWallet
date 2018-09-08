@@ -27,6 +27,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EonSharp.Core", "Externals\
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "eonwallet-app", "eonwallet-app-src\eonwallet-app.njsproj", "{290CC9CE-9D5D-446B-8270-FD7AD97309CE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{384B84C1-8FCF-4301-9498-33358AA0E695}"
+	ProjectSection(SolutionItems) = preProject
+		BuildRelease.bat = BuildRelease.bat
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Externals\EonSharp\Src\EonSharp.Shared\EonSharp.Shared.projitems*{cae2cb2d-ec84-4003-be9d-0941e65e5889}*SharedItemsImports = 13

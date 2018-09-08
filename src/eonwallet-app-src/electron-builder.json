@@ -1,39 +1,56 @@
 {
-  "productName": "angular-electron",
-  "directories": {
+  "productName": "eon-wallet",
+  "directories":
+  {
     "output": "release/"
   },
-    "files": [
-        "**/*",
-        "!*.ts",
-        "!*.code-workspace",
-        "!LICENSE.md",
-        "!package.json",
-        "!package-lock.json",
-        "!src/",
-        "!e2e/",
-        "!hooks/",
-        "!.angular-cli.json",
-        "!_config.yml",
-        "!karma.conf.js",
-        "!tsconfig.json",
-        "!tslint.json"
-    ],
-  "win": {
+  "files":
+  [
+    "**/*",
+    "!*.ts",
+    "!*.code-workspace",
+    "!LICENSE.md",
+    "!package.json",
+    "!package-lock.json",
+    "!src/",
+    "!e2e/",
+    "!hooks/",
+    "!.angular-cli.json",
+    "!_config.yml",
+    "!karma.conf.js",
+    "!tsconfig.json",
+    "!tslint.json"
+  ],
+  "extraResources":
+  {
+    "from": "../api/bin/dist/",
+    "to": "api/bin/dist/",
+    "filter":
+    [
+      "**/*"
+    ]
+  },
+  "win":
+  {
     "icon": "dist",
-    "target": [
+    "target":
+    [
       "portable"
     ]
   },
-  "mac": {
+  "mac":
+  {
     "icon": "dist",
-    "target": [
+    "target":
+    [
       "dmg"
     ]
   },
-  "linux": {
+  "linux":
+  {
     "icon": "dist",
-    "target": [
+    "target":
+    [
       "AppImage"
     ]
   }
