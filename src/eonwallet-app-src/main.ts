@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen, ipcMain } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
@@ -6,10 +6,17 @@ let win, serve;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
 
+const ipc = require('node-ipc');
+ipc.config.id = 'eon';
+ipc.config.retry = 1000;
+const ipcmain = ipcMain;
+
+
 function createWindow() {
 
   const electronScreen = screen;
-  const size = electronScreen.getPrimaryDisplay().workAreaSize;
+  //const size = electronScreen.getPrimaryDisplay().workAreaSize;
+  const size = { width: 1000, height: 900 };
 
   // Create the browser window.
   win = new BrowserWindow({
@@ -32,7 +39,7 @@ function createWindow() {
     }));
   }
 
-  win.webContents.openDevTools();
+  //win.webContents.openDevTools();
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -40,6 +47,42 @@ function createWindow() {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     win = null;
+  });
+
+
+  ipc.connectTo(
+    'eoncore',
+    function ()
+    {
+      ipc.of.eoncore.on(
+        'connect',
+        () => ipc.log('## connected to eoncore ##', ipc.config.delay)
+      );
+      ipc.of.eoncore.on(
+        'disconnect',
+        () => ipc.log('disconnected from eoncore')
+      );
+    }
+  );
+
+  ipcmain.on('wallet.ListNodes', function (event, args)
+  {
+    ipc.of.eoncore.once('wallet.ListNodes', (data) =>
+    {
+      ipc.log(data);
+      win.webContents.send('wallet.ListNodes', data);
+    });
+    ipc.log(ipc.of.eoncore.emit('wallet.ListNodes', args));
+  });
+
+  ipcmain.on('exec-command', (event, args) =>
+  {
+    ipc.of.eoncore.once(args.command, (data) =>
+    {
+      ipc.log(data);
+      win.webContents.send(args.command, data);
+    });
+    ipc.log(ipc.of.eoncore.emit(args.command, args.data));
   });
 
 }

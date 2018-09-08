@@ -7,7 +7,8 @@ import * as childProcess from 'child_process';
 import * as fs from 'fs';
 
 @Injectable()
-export class ElectronService {
+export class ElectronService
+{
 
   ipcRenderer: typeof ipcRenderer;
   webFrame: typeof webFrame;
@@ -15,9 +16,11 @@ export class ElectronService {
   childProcess: typeof childProcess;
   fs: typeof fs;
 
-  constructor() {
+  constructor()
+  {
     // Conditional imports
-    if (this.isElectron()) {
+    if (this.isElectron())
+    {
       this.ipcRenderer = window.require('electron').ipcRenderer;
       this.webFrame = window.require('electron').webFrame;
       this.remote = window.require('electron').remote;
@@ -27,8 +30,26 @@ export class ElectronService {
     }
   }
 
-  isElectron = () => {
+  isElectron = () =>
+  {
     return window && window.process && window.process.type;
   }
+
+
+
+  public sendCommand(cmd: string, parms: any[], callback): void
+  {
+    if (callback != null)
+    {
+      this.ipcRenderer.once(cmd, (event, args) =>
+      {
+        callback(args);
+      });
+    }
+    this.ipcRenderer.send('exec-command', { command: cmd, data: parms });
+  }
+
+
+
 
 }

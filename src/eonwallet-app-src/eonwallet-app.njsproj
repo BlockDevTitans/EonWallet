@@ -53,7 +53,7 @@
     <TypeScriptCompile Include="src\app\app.component.spec.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
-    <Content Include="src\assets\background.jpg" />
+    <Compile Include="src\assets\background.jpg" />
     <TypeScriptCompile Include="src\environments\environment.dev.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />
