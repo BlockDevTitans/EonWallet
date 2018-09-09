@@ -6,13 +6,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
 import { MessageComponent } from './message/message.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   imports: [
     CommonModule,
     CoreRoutingModule
   ],
-  declarations: [NotFoundComponent, MessageComponent,NavigationBarComponent],
+  declarations: [NotFoundComponent, MessageComponent,NavigationBarComponent, HomeComponent],
   exports: [
     RouterModule,
     MessageComponent,
