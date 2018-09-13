@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-// import { ModalAboutComponent } from '../../wallet/modal-about/modal-about.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalSettingsComponent } from '../modal-settings/modal-settings.component';
+
 
 
 @Component({
@@ -10,10 +11,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationBarComponent {
 
-  // constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal) { }
 
-  // myFunc(){
-  //   const modalRef = this.modalService.open(ModalAboutComponent);
-  //   modalRef.componentInstance.title = 'Settings';
-  // }
+  myFunc(){
+    this.modalService.open(ModalSettingsComponent);
+  }
 }

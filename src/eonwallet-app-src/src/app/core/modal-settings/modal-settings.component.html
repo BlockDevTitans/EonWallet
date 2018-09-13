@@ -1,3 +1,35 @@
-<app-modal title="Application Settings">
-  <app-settings></app-settings>
-</app-modal>
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">Application Settings</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    
+  <div class="container-2">
+
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+      <div class="form-group">
+          <label for="firstName">EON Seed</label>
+          <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" required />
+          <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
+              <div *ngIf="firstName.errors.required">First Name is required</div>
+          </div>
+      </div>
+
+      <hr/>
+      <div class="alert alert-warning" role="alert">
+          Generating a new seed will overwrite any previous loaded seeds. Please ensure you backup the seed after creation
+        </div>
+      <div class="form-group">
+          <button type="button" class="btn btn-danger btn-block">Generate New Seed</button>
+      </div>
+  </form>
+</div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-primary">Save changes</button>
+  </div>
+</div>

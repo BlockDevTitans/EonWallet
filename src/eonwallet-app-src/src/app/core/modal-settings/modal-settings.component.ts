@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modal-settings',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalSettingsComponent implements OnInit {
 
-  constructor() { }
+  model: any = {};
+  
+  
+  constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
   }
