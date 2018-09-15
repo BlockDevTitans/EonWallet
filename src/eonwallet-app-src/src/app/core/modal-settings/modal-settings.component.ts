@@ -14,9 +14,10 @@ export class ModalSettingsComponent {
   constructor(public activeModal: NgbActiveModal,public electronService: ElectronService) { }
 
   generate() {
-    this.electronService.sendCommand("seed.Generate", [], (res) =>
+    this.electronService.sendCommand("seed.Generate", [], (account) =>
     {
-      this.model.seed = res;
+      this.model = account;
+
     });
   }
 }
