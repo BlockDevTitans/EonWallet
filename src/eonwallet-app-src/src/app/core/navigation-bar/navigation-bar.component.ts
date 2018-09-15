@@ -14,6 +14,6 @@ export class NavigationBarComponent {
   constructor(private modalService: NgbModal) { }
 
   myFunc(){
-    this.modalService.open(ModalSettingsComponent);
+    this.modalService.open(ModalSettingsComponent,{ size: 'lg' });
   }
 }
