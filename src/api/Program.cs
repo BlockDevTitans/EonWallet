@@ -15,6 +15,8 @@ namespace api
 		{
 			var server = new IPC.Server();
 			server.RegisterClass(new Controllers.WalletController());
+            server.RegisterClass(new Controllers.SeedController());
+
 			var t = Task.Run(() => server.Run());
 
 			Console.WriteLine("Started ipc server");

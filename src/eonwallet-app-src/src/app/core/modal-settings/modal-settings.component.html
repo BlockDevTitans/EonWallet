@@ -11,10 +11,10 @@
 
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <div class="form-group">
-          <label for="firstName">EON Seed</label>
-          <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" required />
-          <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
-              <div *ngIf="firstName.errors.required">First Name is required</div>
+          <label for="seed">EON Seed</label>
+          <input type="text" disabled="disabled" class="form-control" name="seed" [(ngModel)]="model.seed" #seed="ngModel" [ngClass]="{ 'is-invalid': f.submitted && seed.invalid }" required />
+          <div *ngIf="f.submitted && seed.invalid" class="invalid-feedback">
+              <div *ngIf="seed.errors.required">Seed is required</div>
           </div>
       </div>
 
@@ -23,7 +23,7 @@
           Generating a new seed will overwrite any previous loaded seeds. Please ensure you backup the seed after creation
         </div>
       <div class="form-group">
-          <button type="button" class="btn btn-danger btn-block">Generate New Seed</button>
+          <button type="button" class="btn btn-danger btn-block" (click)="generate()">Generate New Seed</button>
       </div>
   </form>
 </div>
