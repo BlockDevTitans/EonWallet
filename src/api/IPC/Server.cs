@@ -28,20 +28,20 @@ namespace api.IPC
 					{
 						data = array.ToObject<object[]>();
 					}
+
+					if (mi.ReturnType.GetMethod("GetAwaiter") != null)
+					{
+						var ts = Task.Run(async () => await (dynamic)mi.Invoke(cls, data)).ContinueWith(t =>
+						{
+							service.OutQueue.Add(new Message { type = msg.type, data = t.Result });
+						});
+					}
 					else
 					{
-						data = new object[] { msg.data };
+						service.OutQueue.Add(new Message { type = msg.type, data = mi.Invoke(cls, data) });
 					}
-
-					var ts = Task.Run(async () => await (dynamic)mi.Invoke(cls, data)).ContinueWith(t =>
-					{
-						service.OutQueue.Add(new Message { type = msg.type, data = t.Result });
-					});
-
-					//service.OutQueue.Add(new Message { type = msg.type, data = Task.Run(async () => await (dynamic)mi.Invoke(cls, data)).Result });
 				}
 			}
-
 		}
 
 

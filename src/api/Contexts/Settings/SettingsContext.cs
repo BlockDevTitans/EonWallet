@@ -15,7 +15,7 @@ namespace api.Contexts.Settings
 
 
 		[UserScopedSetting(), DefaultSettingValue("1.0.0.0")]
-		public Version Version { get => this["Version"] as Version; set => this["Version"] = value; }
+		public string Version { get => this["Version"] as string; set => this["Version"] = value; }
 
 		[UserScopedSetting(), DefaultSettingValue(EonSharp.Constants.NETWORK_TESTNET)]
 		public string NetworkAddress { get => this["NetworkAddress"] as string; set => this["NetworkAddress"] = value; }
