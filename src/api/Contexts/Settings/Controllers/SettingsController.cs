@@ -23,9 +23,20 @@ namespace api.Contexts.Settings.Controllers
 		public SettingsController(SettingsContext ctx)
 		{
 			_context = ctx;
+			_context.PropertyChanged += (s, e) => OnPropertyChanged(e.PropertyName);
 		}
 
 		readonly SettingsContext _context;
+
+		public object GetState()
+		{
+			return this;
+		}
+
+		public string Version => _context.Version.ToString();
+
+		public string Network => _context.NetworkAddress;
+
 
 	}
 }

@@ -29,6 +29,10 @@ namespace api.Contexts.Wallet.Controllers
 
 		readonly WalletContext _context;
 
+		public object GetState()
+		{
+			return this;
+		}
 
 		public IEnumerable<EonSharp.Wallet> Wallets => _context.WalletsCollection;
 
