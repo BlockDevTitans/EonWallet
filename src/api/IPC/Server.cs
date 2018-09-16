@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,7 +32,13 @@ namespace api.IPC
 					{
 						data = new object[] { msg.data };
 					}
-					service.OutQueue.Add(new Message { type = msg.type, data = Task.Run(async () => await (dynamic)mi.Invoke(cls, data)).Result });
+
+					var ts = Task.Run(async () => await (dynamic)mi.Invoke(cls, data)).ContinueWith(t =>
+					{
+						service.OutQueue.Add(new Message { type = msg.type, data = t.Result });
+					});
+
+					//service.OutQueue.Add(new Message { type = msg.type, data = Task.Run(async () => await (dynamic)mi.Invoke(cls, data)).Result });
 				}
 			}
 
@@ -40,12 +47,20 @@ namespace api.IPC
 
 		public void RegisterClass(object instance)
 		{
+			if (instance is INotifyPropertyChanged npc)
+			{
+				npc.PropertyChanged += Npc_PropertyChanged;
+			}
 			classMap.Add(instance.GetType().Name.ToLower(), instance);
 		}
 		public void RegisterClass(IEnumerable<object> instances)
 		{
 			foreach (var instance in instances)
 			{
+				if (instance is INotifyPropertyChanged npc)
+				{
+					npc.PropertyChanged += Npc_PropertyChanged;
+				}
 				classMap.Add(instance.GetType().Name.ToLower(), instance);
 			}
 		}
@@ -54,7 +69,10 @@ namespace api.IPC
 
 		}
 
-
+		private void Npc_PropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			service.OutQueue.Add(new Message { type = sender.GetType().Name.Replace("Controller", "-event").ToLower(), data = sender });
+		}
 
 
 		public void SendMessage(Message msg)

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Newtonsoft.Json;
 
 namespace api
@@ -13,24 +11,24 @@ namespace api
 	{
 		public static void Main(string[] args)
 		{
+
+			var root_context = new Contexts.RootContext();
+
 			var server = new IPC.Server();
-			server.RegisterClass(new Controllers.WalletController());
+			server.RegisterClass(root_context.Controllers);
 			var t = Task.Run(() => server.Run());
 
 			Console.WriteLine("Started ipc server");
 
-			var mr = new ManualResetEventSlim(false);
-			Console.CancelKeyPress += (s, e) => mr.Set();
-			mr.Wait();
+			Console.TreatControlCAsInput = true;
+			for (; ; )
+			{
+				var k = Console.ReadKey();
+				if (k.Modifiers == ConsoleModifiers.Control && k.Key == ConsoleKey.C)
+				{
+					break;
+				}
+			}
 		}
-
-
-
-
 	}
-
-
-
-
-
 }

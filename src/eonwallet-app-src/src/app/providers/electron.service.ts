@@ -49,7 +49,17 @@ export class ElectronService
     this.ipcRenderer.send('exec-command', { command: cmd, data: parms });
   }
 
-
+  public registerForEvents(controller: string, callback): void
+  {
+    if (callback != null)
+    {
+      var cmd = controller + "-event";
+      this.ipcRenderer.on(cmd, (event, args) =>
+      {
+        callback(args);
+      });
+    }
+  }
 
 
 }
