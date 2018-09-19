@@ -138,6 +138,17 @@ button:focus{outline:5px auto rgba(255,255,255,0.2);}
       background:#a01717;
   }
 
+  .alert.blue:before{
+    content:'';
+    position:absolute;
+    top:-1px;
+    left:-1px;
+    bottom:-1px;
+    width:4px;
+    border-radius:3px 0px 0px 3px;
+    background:blue;
+}
+
 
 }
 

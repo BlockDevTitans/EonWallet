@@ -1,0 +1,211 @@
+.card{
+    margin-top:20px;
+    background-color: transparent;
+    color:white;
+}
+
+.card-body{
+    color:white;
+}
+
+button{
+	background-color:transparent;
+	padding:0 !important;
+    margin:0!important;
+}
+
+button:hover, button:active, button:focus {
+  color: black !important;
+  background-color: #0091d9 !important;
+  border-color: #494F57 !important;
+  box-shadow: none!important;
+  
+}
+
+.services-inner {
+border: 2px solid orange;
+
+}
+
+.our-services-text {
+overflow: hidden;
+padding: 28px  20px 25px;
+}
+.our-services-text h4 {
+color: #222222;
+font-size: 18px;
+font-weight: 700;
+letter-spacing: 1px;
+margin-bottom: 8px;
+padding-bottom: 10px;
+position: relative;
+text-transform: uppercase;
+}
+.our-services-text h4::before {
+background: #ec6d48 none repeat scroll 0 0;
+bottom: 0;
+content: "";
+height: 1px;
+position: absolute;
+width: 35px;
+}
+
+.our-services-text p {
+margin-bottom: 0;
+}
+p {
+font-size: 14px;
+font-weight: 400;
+line-height: 26px;
+color: white;
+margin-bottom: 15px;
+}
+
+
+/*Start Wizard*/
+
+.bootstrapWizard {
+display: block;
+list-style: none;
+padding: 0;
+position: relative;
+width: 100%
+}
+
+.bootstrapWizard a:hover,.bootstrapWizard a:active,.bootstrapWizard a:focus {
+text-decoration: none
+}
+
+.bootstrapWizard li {
+display: block;
+float: left;
+width: 25%;
+text-align: center;
+padding-left: 0
+}
+
+.bootstrapWizard li:before {
+border-top: 3px solid #55606E;
+content: "";
+display: block;
+font-size: 0;
+overflow: hidden;
+position: relative;
+top: 11px;
+right: 1px;
+width: 100%;
+z-index: 1
+}
+
+.bootstrapWizard li:first-child:before {
+left: 50%;
+max-width: 50%
+}
+
+.bootstrapWizard li:last-child:before {
+max-width: 50%;
+width: 50%
+}
+
+.bootstrapWizard li.complete .step {
+background: #0aa66e;
+padding: 1px 6px;
+border: 3px solid #55606E
+}
+
+.bootstrapWizard li .step i {
+font-size: 10px;
+font-weight: 400;
+position: relative;
+top: -1.5px
+}
+
+.bootstrapWizard li .step {
+background: #B2B5B9;
+color: black;
+display: inline;
+font-size: 15px;
+font-weight: 700;
+line-height: 12px;
+padding: 7px 13px;
+border: 3px solid transparent;
+border-radius: 50%;
+line-height: normal;
+position: relative;
+text-align: center;
+z-index: 2;
+transition: all .1s linear 0s
+}
+
+.bootstrapWizard li.active .step,.bootstrapWizard li.active.complete .step {
+background: #0091d9;
+color:black;;
+font-weight: 700;
+padding: 7px 13px;
+font-size: 15px;
+border-radius: 50%;
+border: 3px solid #55606E
+}
+
+.bootstrapWizard li.complete .title,.bootstrapWizard li.active .title {
+color: #2B3D53
+}
+
+.bootstrapWizard li .title {
+color: #bfbfbf;
+display: block;
+font-size: 13px;
+line-height: 15px;
+max-width: 100%;
+position: relative;
+table-layout: fixed;
+text-align: center;
+top: 20px;
+word-wrap: break-word;
+z-index: 104
+}
+
+.wizard-actions {
+display: block;
+list-style: none;
+padding: 0;
+position: relative;
+width: 100%
+}
+
+.wizard-actions li {
+display: inline
+}
+
+.tab-content.transparent {
+background-color: transparent
+}
+
+.alert{
+    background:#202225;
+    padding:20px;
+    border-radius:3px;
+    margin-bottom:20px;
+    display:flex;
+    flex-direction:column;
+    color:#b3b8ba;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+.alert strong{
+    display:block;
+    font-weight:normal;
+    color:#e3eaed;
+    margin-bottom:5px;
+    flex-shrink:0;  
+}
+
+.alert span{
+    margin-bottom:10px;
+    flex-shrink:2;
+    text-align:center;
+}
+
+

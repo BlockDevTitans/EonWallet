@@ -7,13 +7,14 @@ import { RouterModule } from '@angular/router';
 import { MessageComponent } from './message/message.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { HomeComponent } from './home/home.component';
+import { SetupComponent } from './setup/setup.component';
 
 @NgModule({
   imports: [
     CommonModule,
     CoreRoutingModule
   ],
-  declarations: [NotFoundComponent, MessageComponent,NavigationBarComponent, HomeComponent],
+  declarations: [NotFoundComponent, MessageComponent,NavigationBarComponent, HomeComponent, SetupComponent],
   exports: [
     RouterModule,
     MessageComponent,
