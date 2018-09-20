@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Dynamic;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -71,7 +72,10 @@ namespace api.IPC
 
 		private void Npc_PropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
-			service.OutQueue.Add(new Message { type = sender.GetType().Name.Replace("Controller", "-event").ToLower(), data = sender });
+			dynamic obj = new ExpandoObject();
+			obj.name = sender.GetType().Name.Replace("Controller", "").ToLower();
+			obj.data = sender;
+			service.OutQueue.Add(new Message { type = "event", data = obj });
 		}
 
 
