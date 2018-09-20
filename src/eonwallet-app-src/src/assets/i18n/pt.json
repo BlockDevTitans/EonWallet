@@ -1,0 +1,15 @@
+{
+  "SETTINGS":
+  {
+    "NETWORK": "Rede"
+  },
+  "WALLET":
+  {
+    "NAVTITLE": "Carteira",
+    "ACCOUNT":
+    {
+      "BALANCE": "Balanço",
+      "DEPOSIT": "Depósito"
+    }
+  }
+}

@@ -37,7 +37,7 @@ function createWindow()
     });
     win.loadURL('http://localhost:4200');
 
-    win.webContents.openDevTools();
+    //win.webContents.openDevTools();
     win.setMenu(null);
   } else
   {
@@ -73,6 +73,13 @@ function createWindow()
         'disconnect',
         () => ipc.log('disconnected from eoncore')
       );
+      ipc.of.eoncore.on(
+        'event',
+        (data) =>
+        {
+          win.webContents.send(data.name + "-event", data.data);
+        }
+      );
     }
   );
 
@@ -85,7 +92,6 @@ function createWindow()
     });
     ipc.log(ipc.of.eoncore.emit(args.command, args.data));
   });
-
 }
 
 

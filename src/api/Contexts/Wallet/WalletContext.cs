@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EonSharp;
@@ -13,10 +14,23 @@ namespace api.Contexts.Wallet
 	{
 		public WalletContext(Settings.SettingsContext ctx)
 		{
-			_settings = ctx;
+			this._settings = ctx;
 
 			InitializeEonClient();
 			InitializeWallets();
+
+			//if network is changed in settings automatically update the eonClient
+			this._settings.PropertyChanged += (s, e) =>
+			{
+				switch (e.PropertyName)
+				{
+					case "NetworkAddress":
+						InitializeEonClient();
+						break;
+					default:
+						break;
+				}
+			};
 		}
 
 		readonly Settings.SettingsContext _settings;
@@ -25,7 +39,7 @@ namespace api.Contexts.Wallet
 		void InitializeEonClient()
 		{
 			Configuration.IgnoreSslErrors = true;
-			_eonclient = new EonClient(_settings.NetworkAddress);
+			this._eonclient = new EonClient(_settings.NetworkAddress);
 			var t = Task.Run(async () =>
 			{
 				await _eonclient.UpdateBlockchainDetails();
@@ -55,7 +69,26 @@ namespace api.Contexts.Wallet
 		{
 			var wallet = await Task.Run(() => new EonSharp.Wallet(name, password));
 			WalletsCollection.Add(wallet);
+			SaveWallets();
 			return wallet;
+		}
+
+		public async Task<EonSharp.Wallet> AddWallet(string name, string seed, string password)
+		{
+			var wallet = await Task.Run(() => new EonSharp.Wallet(name, EonSharp.Helpers.HexHelper.HexStringToByteArray(seed), password));
+			WalletsCollection.Add(wallet);
+			SaveWallets();
+			return wallet;
+		}
+
+		public async Task<Attributes> GetNetworkDetails() => await this._eonclient.Peer.Metadata.GetAttributesAsync();
+
+		public async Task<Info> GetAccountInformation(string accountid)
+		{
+			var wallet = this.WalletsCollection.FirstOrDefault(w => w.AccountDetails.AccountId.Equals(accountid, StringComparison.OrdinalIgnoreCase));
+			await wallet.RefreshAsync(this._eonclient);
+			return wallet.Information;
+			
 		}
 	}
 }

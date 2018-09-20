@@ -19,7 +19,8 @@ import { WebviewDirective } from './directives/webview.directive';
 import { AppComponent } from './app.component';
 
 // AoT requires an exported function for factories
-export function HttpLoaderFactory(http: HttpClient) {
+export function HttpLoaderFactory(http: HttpClient)
+{
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 

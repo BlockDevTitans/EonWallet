@@ -1,7 +1,15 @@
 {
-  "PAGES": {
-      "HOME": {
-          "TITLE": "App works !"
-      }
+  "SETTINGS":
+  {
+    "NETWORK": "Network"
+  },
+  "WALLET":
+  {
+    "NAVTITLE": "Wallet",
+    "ACCOUNT":
+    {
+      "BALANCE": "Balance",
+      "DEPOSIT": "Deposit"
+    }
   }
 }

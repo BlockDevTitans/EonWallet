@@ -20,6 +20,9 @@ namespace api.Contexts.Settings
 		[UserScopedSetting(), DefaultSettingValue(EonSharp.Constants.NETWORK_TESTNET)]
 		public string NetworkAddress { get => this["NetworkAddress"] as string; set => this["NetworkAddress"] = value; }
 
+		[UserScopedSetting(), DefaultSettingValue("en")]
+		public string Language { get => this["Language"] as string; set => this["Language"] = value; }
+
 		[UserScopedSetting()]
 		public string Wallets { get => this["Wallets"] as string; set => this["Wallets"] = value; }
 
