@@ -100,13 +100,13 @@ var apiProcess = null;
 function startApi()
 {
   //Starts NET Core Api service
-  var proc = require('child_process').spawn;
+  var proc = require('child_process').execFile;
   var apipath = path.join(__dirname, '..\\api\\bin\\dist\\win\\api.exe');
   if (os.platform() === 'darwin')
   {
     apipath = path.join(__dirname, '..//api//bin//dist//osx//Api');
   }
-  apiProcess = proc(apipath);
+  apiProcess = proc(apipath, ['-datadir', app.getPath('userData')]);
 
   apiProcess.stdout.on('data', (data) =>
   {
