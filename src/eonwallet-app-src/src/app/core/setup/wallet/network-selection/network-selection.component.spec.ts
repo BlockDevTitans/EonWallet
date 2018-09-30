@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalSettingsComponent } from './modal-settings.component';
+import { NetworkSelectionComponent } from './network-selection.component';
 
-describe('ModalSettingsComponent', () => {
-  let component: ModalSettingsComponent;
-  let fixture: ComponentFixture<ModalSettingsComponent>;
+describe('NetworkSelectionComponent', () => {
+  let component: NetworkSelectionComponent;
+  let fixture: ComponentFixture<NetworkSelectionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalSettingsComponent ]
+      declarations: [ NetworkSelectionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalSettingsComponent);
+    fixture = TestBed.createComponent(NetworkSelectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

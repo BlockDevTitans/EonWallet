@@ -8,13 +8,19 @@ import { MessageComponent } from './message/message.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { HomeComponent } from './home/home.component';
 import { SetupComponent } from './setup/setup.component';
+import { WizardDirective } from '../wizardDirective.directive';
+import { NetworkSelectionComponent } from './setup/wallet/network-selection/network-selection.component';
+import { SummaryComponent } from './setup/wallet/summary/summary.component';
 
 @NgModule({
+  entryComponents:[NetworkSelectionComponent, SummaryComponent],
   imports: [
     CommonModule,
     CoreRoutingModule
   ],
-  declarations: [NotFoundComponent, MessageComponent,NavigationBarComponent, HomeComponent, SetupComponent],
+  declarations: [SetupComponent,
+    WizardDirective,
+     NotFoundComponent, MessageComponent,NavigationBarComponent, HomeComponent, SetupComponent],
   exports: [
     RouterModule,
     MessageComponent,
