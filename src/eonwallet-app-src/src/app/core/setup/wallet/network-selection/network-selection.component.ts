@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { IWizard } from '../core/setup/setup.component';
+import { IWizard } from '../../setup.component';
+
 
 @Component({
   selector: 'app-network-selection',

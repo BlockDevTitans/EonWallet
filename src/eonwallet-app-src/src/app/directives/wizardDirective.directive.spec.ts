@@ -1,4 +1,5 @@
-import { WizardDirective } from './WizardDirective.directive';
+import { WizardDirective } from "./WizardDirective.directive";
+
 
 describe('WizardDirective', () => {
   it('should create an instance', () => {

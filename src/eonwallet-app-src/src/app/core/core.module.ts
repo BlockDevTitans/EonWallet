@@ -8,7 +8,7 @@ import { MessageComponent } from './message/message.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { HomeComponent } from './home/home.component';
 import { SetupComponent } from './setup/setup.component';
-import { WizardDirective } from '../wizardDirective.directive';
+import { WizardDirective } from '../directives/wizardDirective.directive';
 import { NetworkSelectionComponent } from './setup/wallet/network-selection/network-selection.component';
 import { SummaryComponent } from './setup/wallet/summary/summary.component';
 

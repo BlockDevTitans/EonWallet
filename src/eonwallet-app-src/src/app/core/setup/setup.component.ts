@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ComponentFactoryResolver, Directive, Input, ElementRef, ViewContainerRef, EventEmitter, Type, Output } from '@angular/core';
 import { ElectronService } from '../../providers/electron.service';
-import { WizardDirective } from '../../wizardDirective.directive';
+import { WizardDirective } from '../../directives/wizardDirective.directive';
 import { NetworkSelectionComponent } from './wallet/network-selection/network-selection.component';
 import { SummaryComponent } from './wallet/summary/summary.component';
 
