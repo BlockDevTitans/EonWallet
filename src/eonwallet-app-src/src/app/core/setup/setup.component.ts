@@ -3,6 +3,8 @@ import { ElectronService } from '../../providers/electron.service';
 import { WizardDirective } from '../../directives/wizardDirective.directive';
 import { NetworkSelectionComponent } from './wallet/network-selection/network-selection.component';
 import { SummaryComponent } from './wallet/summary/summary.component';
+import { KeyConfigurationComponent } from './wallet/key-configuration/key-configuration.component';
+import { SecurityComponent } from './wallet/security/security.component';
 
 
 export interface IWizard {
@@ -21,7 +23,10 @@ export class WizardStep {
 })
 export class SetupComponent implements OnInit {
 
-  private steps: WizardStep[] = [new WizardStep(NetworkSelectionComponent, []), new WizardStep(SummaryComponent, [])];
+  private steps: WizardStep[] = [new WizardStep(NetworkSelectionComponent, []),
+   new WizardStep(KeyConfigurationComponent, []),
+    new WizardStep(SecurityComponent, []),
+      new WizardStep(SummaryComponent, [])];
 
   private stepPointer: number = 0;
 

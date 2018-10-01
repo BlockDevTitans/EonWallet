@@ -22,6 +22,11 @@ button:hover, button:active, button:focus {
   
 }
 
+.title.active{
+        color:orange!important;
+        font-weight: bold
+    }
+
 .services-inner {
 border: 2px solid orange;
 

@@ -16,19 +16,19 @@
 
       <div class="form-bootstrapWizard">
         <ul class="bootstrapWizard form-wizard">
-          <li class="active" data-target="#step1">
-            <a href="#tab1" data-toggle="tab" class="active"> <span class="step">1</span> <span class="title"><strong style="color:orange">Network
+          <li [ngClass]="stepPointer==0 ? 'active' : ''"  data-target="#step1">
+            <a href="#tab1" data-toggle="tab"> <span class="step">1</span> <span  [ngClass]="stepPointer==0 ? 'title active' : 'title'">Network
                   Selection
-                </strong></span> </a>
+                </span> </a>
           </li> 
-          <li data-target="#step2" class="">
-            <a href="#tab2" data-toggle="tab"> <span class="step">2</span> <span class="title">Account Setup</span> </a>
+          <li [ngClass]="stepPointer==1 ? 'active' : ''" data-target="#step2" class="">
+            <a href="#tab2" data-toggle="tab" > <span class="step">2</span> <span [ngClass]="stepPointer==1 ? 'title active' : 'title'">Account Setup</span> </a>
           </li>
-          <li data-target="#step3" class="">
-            <a href="#tab3" data-toggle="tab"> <span class="step">3</span> <span class="title">Protection</span> </a>
+          <li data-target="#step3" [ngClass]="stepPointer==2 ? 'active' : ''">
+            <a href="#tab3" data-toggle="tab" > <span class="step">3</span> <span [ngClass]="stepPointer==2 ? 'title active' : 'title'">Protection</span> </a>
           </li>
-          <li data-target="#step4">
-            <a href="#tab4" data-toggle="tab"> <span class="step">4</span> <span class="title">Summary</span> </a>
+          <li data-target="#step4" [ngClass]="stepPointer==3 ? 'active' : ''">
+            <a href="#tab4" data-toggle="tab"> <span class="step">4</span> <span [ngClass]="stepPointer==3 ? 'title active' : 'title'">Summary</span> </a>
           </li>
         </ul>
         <div class="clearfix"></div>

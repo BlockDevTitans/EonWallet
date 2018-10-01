@@ -11,9 +11,11 @@ import { SetupComponent } from './setup/setup.component';
 import { WizardDirective } from '../directives/wizardDirective.directive';
 import { NetworkSelectionComponent } from './setup/wallet/network-selection/network-selection.component';
 import { SummaryComponent } from './setup/wallet/summary/summary.component';
+import { KeyConfigurationComponent } from './setup/wallet/key-configuration/key-configuration.component';
+import { SecurityComponent } from './setup/wallet/security/security.component';
 
 @NgModule({
-  entryComponents:[NetworkSelectionComponent, SummaryComponent],
+  entryComponents:[NetworkSelectionComponent,KeyConfigurationComponent, SecurityComponent, SummaryComponent],
   imports: [
     CommonModule,
     CoreRoutingModule
