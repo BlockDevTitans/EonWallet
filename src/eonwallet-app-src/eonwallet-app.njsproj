@@ -44,6 +44,8 @@
     <Content Include="src\app\core\not-found\not-found.component.scss" />
     <Content Include="src\app\core\settings\settings.component.html" />
     <Content Include="src\app\core\settings\settings.component.scss" />
+    <Content Include="src\app\core\setup\setup.component.html" />
+    <Content Include="src\app\core\setup\setup.component.scss" />
     <Content Include="src\assets\i18n\pt.json" />
     <Content Include="src\favicon.icns" />
     <Content Include="src\styles.scss" />
@@ -78,6 +80,8 @@
     <TypeScriptCompile Include="src\app\core\not-found\not-found.component.ts" />
     <TypeScriptCompile Include="src\app\core\settings\settings.component.spec.ts" />
     <TypeScriptCompile Include="src\app\core\settings\settings.component.ts" />
+    <TypeScriptCompile Include="src\app\core\setup\setup.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\core\setup\setup.component.ts" />
     <TypeScriptCompile Include="src\main.ts" />
     <TypeScriptCompile Include="src\polyfills-test.ts" />
     <TypeScriptCompile Include="src\polyfills.ts" />
@@ -108,6 +112,7 @@
     <Folder Include="src\app\core\navigation-bar\" />
     <Folder Include="src\app\core\not-found\" />
     <Folder Include="src\app\core\settings\" />
+    <Folder Include="src\app\core\setup\" />
     <Folder Include="src\app\directives" />
     <Folder Include="src\app\providers" />
     <Folder Include="src\assets" />

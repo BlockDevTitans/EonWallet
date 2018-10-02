@@ -11,7 +11,6 @@ namespace api
 	{
 		public static void Main(string[] args)
 		{
-
 			var root_context = new Contexts.RootContext();
 
 			var server = new IPC.Server();
@@ -20,15 +19,9 @@ namespace api
 
 			Console.WriteLine("Started ipc server");
 
-			Console.TreatControlCAsInput = true;
-			for (; ; )
-			{
-				var k = Console.ReadKey();
-				if (k.Modifiers == ConsoleModifiers.Control && k.Key == ConsoleKey.C)
-				{
-					break;
-				}
-			}
+			Console.CancelKeyPress += (s,e) => Environment.Exit(0);
+
+			t.Wait();
 		}
 	}
 }
