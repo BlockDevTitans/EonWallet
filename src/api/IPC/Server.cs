@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Dynamic;
@@ -23,13 +24,12 @@ namespace api.IPC
 				var kv = msg.type.Split('.');
 				if (classMap.TryGetValue(kv[0] + "controller", out object cls))
 				{
-					var mi = cls.GetType().GetMethod(kv[1]);
 					object[] data = null;
 					if (msg.data is Newtonsoft.Json.Linq.JArray array)
 					{
 						data = array.ToObject<object[]>();
 					}
-
+					var mi = cls.GetType().GetMethod(kv[1], data == null ? new Type[0] : data.Select(o => o.GetType()).ToArray());
 					if (mi.ReturnType.GetMethod("GetAwaiter") != null)
 					{
 						var ts = Task.Run(async () => await (dynamic)mi.Invoke(cls, data)).ContinueWith(t =>
