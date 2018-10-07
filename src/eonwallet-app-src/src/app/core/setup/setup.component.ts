@@ -7,8 +7,13 @@ import { KeyConfigurationComponent } from './wallet/key-configuration/key-config
 import { SecurityComponent } from './wallet/security/security.component';
 
 
+export class  WizardData {
+  networkSelection:string;
+  name: string;
+}
 export interface IWizard {
   visibility: EventEmitter<Boolean>;
+  data: WizardData;
 }
 
 
@@ -24,9 +29,9 @@ export class WizardStep {
 export class SetupComponent implements OnInit {
 
   private steps: WizardStep[] = [new WizardStep(NetworkSelectionComponent, []),
-   new WizardStep(KeyConfigurationComponent, []),
-    new WizardStep(SecurityComponent, []),
-      new WizardStep(SummaryComponent, [])];
+  new WizardStep(KeyConfigurationComponent, []),
+  new WizardStep(SecurityComponent, []),
+  new WizardStep(SummaryComponent, [])];
 
   private stepPointer: number = 0;
 
@@ -39,6 +44,7 @@ export class SetupComponent implements OnInit {
     this.loadComponent();
   }
 
+  data: WizardData = new WizardData();
   loadComponent() {
     let viewToLoad = this.steps[this.stepPointer];
 
@@ -48,8 +54,11 @@ export class SetupComponent implements OnInit {
     viewContainerRef.clear();
 
     let componentRef = viewContainerRef.createComponent(componentFactory);
-
+    componentRef.instance.data = this.data;
+    
     componentRef.instance.visibility.subscribe(v => {
+      this.data = componentRef.instance.data;
+      console.log('fetching data from comp', this.data);
       this.next();
     })
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { IWizard } from '../../setup.component';
+import { WizardData, IWizard } from '../../setup.component';
 import { ElectronService } from '../../../../providers/electron.service';
 
 
@@ -9,19 +9,21 @@ import { ElectronService } from '../../../../providers/electron.service';
   styleUrls: ['./network-selection.component.scss']
 })
 export class NetworkSelectionComponent implements IWizard {
+  data: WizardData;
 
-@Output()
-visibility = new EventEmitter<Boolean>();
+  @Output()
+  visibility = new EventEmitter<Boolean>();
 
   constructor(public electronService: ElectronService) { }
 
-  setNetwork(network: number){
-      let str = network === 1? "main" : "testnet";
-      this.electronService.sendCommand("settings.SetNetwork", [str], (res) =>
-      {
-        this.electronService.sendCommand("settings.Save", null, () =>{
-          this.visibility.emit(true);
-        });
+  setNetwork(network: number) {
+    let str = network === 1 ? "main" : "testnet";
+    this.electronService.sendCommand("settings.SetNetwork", [str], (res) => {
+      this.electronService.sendCommand("settings.Save", null, () => {
+      
+        this.data.networkSelection = str;
+        this.visibility.emit(true);
       });
-    }
+    });
+  }
 }
