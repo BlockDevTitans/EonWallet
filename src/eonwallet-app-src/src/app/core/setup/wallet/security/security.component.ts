@@ -18,12 +18,11 @@ export class SecurityComponent implements OnInit, IWizard {
 
   account_validation_messages = {
     'accountName': [
-      { type: 'required', message: 'Username is required' },
-      { type: 'minlength', message: 'Username must be at least 5 characters long' },
-      { type: 'maxlength', message: 'Username cannot be more than 25 characters long' },
-      { type: 'pattern', message: 'Your username must contain only numbers and letters' },
-      { type: 'validUsername', message: 'Your username has already been taken' }
-    ],
+      { type: 'required', message: 'Account name is required' },
+      { type: 'minlength', message: 'Account name must be at least 5 characters long' },
+      { type: 'maxlength', message: 'Account name cannot be more than 25 characters long' },
+      { type: 'pattern', message: 'Your Account name must contain only numbers and letters' },
+      ],
     'password': [
       { type: 'required', message: 'Password is required' },
       { type: 'minlength', message: 'Password must be at least 5 characters long' },
