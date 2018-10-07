@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IWizard, WizardData } from '../../setup.component';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { PasswordValidator, ParentErrorStateMatcher } from '../../../../validators/password.validator';
 import { ElectronService } from '../../../../providers/electron.service';
 
 @Component({
