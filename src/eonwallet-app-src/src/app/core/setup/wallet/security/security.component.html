@@ -1,9 +1,8 @@
 <div class="alert red">
   <span>
     <strong>Account Setup</strong>
-    In order to use the network you need to setup a new account, or import an existing account. If you're importing an
-    existing account you need to know the credentials associated.
-  </span>
+<p>This wallet protects your assets with a password to salt the private key. You must remember this password as there is no way it can be recovered! Think of it as a key to your digital safe - it protects your digital assets if someone gains access to your machine. </p><p>Your assets may be at risk if you share these details.
+</p>  </span>
 </div>
 <hr />
 <div class="col-10">
@@ -11,8 +10,7 @@
     <div class="form-group row">
       <label for="account-name" class="col-sm-3 col-form-label col-form-label-sm">Account Name</label>
       <div class="col-sm-5">
-        <input   class="form-control form-control-sm" placeholder="Account name" formControlName="accountName"
-          >
+        <input   class="form-control form-control-sm" placeholder="Account name" formControlName="accountName">
         <div *ngFor="let validation of account_validation_messages.accountName">
           <small style="color:orange;" *ngIf="accountDetailsForm.get('accountName').hasError(validation.type) && (accountDetailsForm.get('accountName').dirty || accountDetailsForm.get('accountName').touched)"
             class="form-text ">
