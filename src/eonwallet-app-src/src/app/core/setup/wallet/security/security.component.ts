@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IWizard, WizardData } from '../../setup.component';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ElectronService } from '../../../../providers/electron.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-security',
@@ -29,7 +30,7 @@ export class SecurityComponent implements OnInit, IWizard {
     ]
   }
 
-  constructor(private fb: FormBuilder, public electronService: ElectronService) { }
+  constructor(private fb: FormBuilder, public electronService: ElectronService,  private spinnerService: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
     this.createForms();
@@ -51,9 +52,10 @@ export class SecurityComponent implements OnInit, IWizard {
   }
 
   next(data) {
-  
+    this.spinnerService.show();  
     this.electronService.sendCommand("wallet.AddWallet", [data.accountName, data.password], (returnValue) => { 
       this.data = returnValue;
+      this.spinnerService.hide();
     this.visibility.emit(true) });
   
   }

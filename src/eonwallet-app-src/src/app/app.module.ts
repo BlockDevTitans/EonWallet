@@ -4,7 +4,7 @@ import '../polyfills';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 
@@ -22,6 +22,8 @@ import { SummaryComponent } from './core/setup/wallet/summary/summary.component'
 import { KeyConfigurationComponent } from './core/setup/wallet/key-configuration/key-configuration.component';
 import { SecurityComponent } from './core/setup/wallet/security/security.component';
 import {  ReactiveFormsModule } from '@angular/forms';
+
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient)
 {
@@ -43,6 +45,7 @@ export function HttpLoaderFactory(http: HttpClient)
     HttpClientModule,
     CoreModule,
     ReactiveFormsModule,
+    Ng4LoadingSpinnerModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
