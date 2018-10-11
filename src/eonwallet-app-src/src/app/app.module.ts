@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 // NG Translate
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -21,7 +22,8 @@ import { NetworkSelectionComponent } from './core/setup/wallet/network-selection
 import { SummaryComponent } from './core/setup/wallet/summary/summary.component';
 import { KeyConfigurationComponent } from './core/setup/wallet/key-configuration/key-configuration.component';
 import { SecurityComponent } from './core/setup/wallet/security/security.component';
-import {  ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TestComponent } from './test/test.component';
 
 
 // AoT requires an exported function for factories
@@ -31,15 +33,18 @@ export function HttpLoaderFactory(http: HttpClient)
 }
 
 @NgModule({
+  entryComponents:[TestComponent],
   declarations: [
     AppComponent,
     WebviewDirective,
     NetworkSelectionComponent,
     SummaryComponent,
     SecurityComponent,
-    KeyConfigurationComponent
+    KeyConfigurationComponent,
+    TestComponent
   ],
   imports: [
+    NgbModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
@@ -54,6 +59,7 @@ export function HttpLoaderFactory(http: HttpClient)
       }
     })
   ],
+  
   providers: [ElectronService],
   bootstrap: [AppComponent]
 })

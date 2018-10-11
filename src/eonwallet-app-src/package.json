@@ -37,7 +37,7 @@
     "e2e": "npm run postinstall:web && ng e2e"
   },
   "dependencies": {
-    "@ng-bootstrap/ng-bootstrap": "^3.2.0",
+    "@ng-bootstrap/ng-bootstrap": "^3.3.0",
     "ng4-loading-spinner": "^1.2.3",
     "node-ipc": "^9.1.1"
   },

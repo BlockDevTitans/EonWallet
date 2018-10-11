@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { WizardData, IWizard } from '../../setup.component';
+
 import { ElectronService } from '../../../../providers/electron.service';
+import { WizardData, IWizard } from '../../../../test/test.component';
 
 
 @Component({
@@ -17,6 +18,8 @@ export class NetworkSelectionComponent implements IWizard {
   constructor(public electronService: ElectronService) { }
 
   setNetwork(network: number) {
+    this.data = this.data || new WizardData();
+    console.log('data is',this.data);
     let str = network === 1 ? "main" : "testnet";
     this.electronService.sendCommand("settings.SetNetwork", [str], (res) => {
       this.electronService.sendCommand("settings.Save", null, () => {

@@ -5,21 +5,9 @@ import { NetworkSelectionComponent } from './wallet/network-selection/network-se
 import { SummaryComponent } from './wallet/summary/summary.component';
 import { KeyConfigurationComponent } from './wallet/key-configuration/key-configuration.component';
 import { SecurityComponent } from './wallet/security/security.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TestComponent } from '../../test/test.component';
 
-
-export class  WizardData {
-  networkSelection:string;
-  name: string;
-}
-export interface IWizard {
-  visibility: EventEmitter<Boolean>;
-  data: WizardData;
-}
-
-
-export class WizardStep {
-  constructor(public component: Type<IWizard>, public data: any) { }
-}
 
 @Component({
   selector: 'app-setup',
@@ -28,43 +16,19 @@ export class WizardStep {
 })
 export class SetupComponent implements OnInit {
 
-  private steps: WizardStep[] = [new WizardStep(NetworkSelectionComponent, []),
-  new WizardStep(KeyConfigurationComponent, []),
-  new WizardStep(SecurityComponent, []),
-  new WizardStep(SummaryComponent, [])];
 
-  private stepPointer: number = 0;
-
-
-  @ViewChild(WizardDirective) adHost: WizardDirective;
-
-  constructor(public electronService: ElectronService, private componentFactoryResolver: ComponentFactoryResolver) { }
+  constructor(private modalService: NgbModal, public electronService: ElectronService, private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
-    this.loadComponent();
-  }
-
-  data: WizardData = new WizardData();
-  loadComponent() {
-    let viewToLoad = this.steps[this.stepPointer];
-
-    let componentFactory = this.componentFactoryResolver.resolveComponentFactory(viewToLoad.component);
-    let viewContainerRef = this.adHost.viewContainerRef;
-
-    viewContainerRef.clear();
-
-    let componentRef = viewContainerRef.createComponent(componentFactory);
-    componentRef.instance.data = this.data;
     
-    componentRef.instance.visibility.subscribe(v => {
-      this.data = componentRef.instance.data;
-      console.log('fetching data from comp', this.data);
-      this.next();
-    })
   }
 
-  next() {
-    this.stepPointer = this.stepPointer + 1;
-    this.loadComponent();
+  open(content) {
+   let v =  this.modalService.open(TestComponent, {size: 'lg', centered: true,ariaLabelledBy: 'modal-basic-title'});
+  console.log(v);
+  
   }
+
+
+  
 }

@@ -13,9 +13,10 @@ import { NetworkSelectionComponent } from './setup/wallet/network-selection/netw
 import { SummaryComponent } from './setup/wallet/summary/summary.component';
 import { KeyConfigurationComponent } from './setup/wallet/key-configuration/key-configuration.component';
 import { SecurityComponent } from './setup/wallet/security/security.component';
+import { TestComponent } from '../test/test.component';
 
 @NgModule({
-  entryComponents:[NetworkSelectionComponent,KeyConfigurationComponent, SecurityComponent, SummaryComponent],
+  entryComponents:[TestComponent, NetworkSelectionComponent,KeyConfigurationComponent, SecurityComponent, SummaryComponent],
   imports: [
     CommonModule,
     CoreRoutingModule
