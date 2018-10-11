@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { WizardData, IWizard } from '../../../../test/test.component';
+import { WizardData, IWizard } from '../../setup.component';
 import { ElectronService } from '../../../../providers/electron.service';
 
 export class Account {

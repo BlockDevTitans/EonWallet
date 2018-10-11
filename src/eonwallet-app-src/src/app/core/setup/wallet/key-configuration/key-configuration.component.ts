@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { WizardData, IWizard } from '../../../../test/test.component';
-import { ElectronService } from '../../../../providers/electron.service';
+import { WizardData, IWizard } from '../../setup.component';
+
 
 @Component({
   selector: 'app-key-configuration',

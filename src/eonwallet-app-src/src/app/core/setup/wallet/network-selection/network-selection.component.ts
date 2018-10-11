@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 import { ElectronService } from '../../../../providers/electron.service';
-import { WizardData, IWizard } from '../../../../test/test.component';
+import { WizardData, IWizard } from '../../setup.component';
 
 
 @Component({

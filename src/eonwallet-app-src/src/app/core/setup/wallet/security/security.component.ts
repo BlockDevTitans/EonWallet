@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { WizardData, IWizard } from '../../../../test/test.component';
+import { WizardData, IWizard } from '../../setup.component';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ElectronService } from '../../../../providers/electron.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';

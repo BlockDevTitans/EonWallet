@@ -23,7 +23,8 @@ import { SummaryComponent } from './core/setup/wallet/summary/summary.component'
 import { KeyConfigurationComponent } from './core/setup/wallet/key-configuration/key-configuration.component';
 import { SecurityComponent } from './core/setup/wallet/security/security.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TestComponent } from './test/test.component';
+import { SetupComponent } from './core/setup/setup.component';
+
 
 
 // AoT requires an exported function for factories
@@ -33,7 +34,7 @@ export function HttpLoaderFactory(http: HttpClient)
 }
 
 @NgModule({
-  entryComponents:[TestComponent],
+  entryComponents:[SetupComponent],
   declarations: [
     AppComponent,
     WebviewDirective,
@@ -41,7 +42,7 @@ export function HttpLoaderFactory(http: HttpClient)
     SummaryComponent,
     SecurityComponent,
     KeyConfigurationComponent,
-    TestComponent
+    SetupComponent
   ],
   imports: [
     NgbModule,
