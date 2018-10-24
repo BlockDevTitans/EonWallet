@@ -1,20 +1,13 @@
-nav{
-    border-bottom:1px solid grey;
-}
-
-.navbar-nav > .active{
-    border-bottom: #d65c14 1px solid;
-}
-
-.current-account{
-    background-color:transparent; 
-    border:none;
-}
+.app-header-bar {
+    height: 60px;
+    z-index: 10;
+  }
+  
 .menu-panel.position-absolute {
-  right: 0;
+  left: 0;
   top: 60;
   box-shadow: 0 0.7rem 1rem rgba(0, 0, 0, 0.3) !important;
-  height: calc(100% - 80px);
+  height: calc(100% - 60px);
   z-index: 970;
 }
 
@@ -27,6 +20,6 @@ nav{
     background: rgba(0, 0, 0, 0.5);
     left: 0;
     top: 60;
-    height: calc(100% - 110px);
+    height: calc(100% - 60px);
     z-index: 90;
   }

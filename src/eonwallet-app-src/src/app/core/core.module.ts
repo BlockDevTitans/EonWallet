@@ -16,16 +16,17 @@ import { SecurityComponent } from './setup/wallet/security/security.component';
 
 import { OverviewComponent } from '../overview/overview.component';
 import { SetupComponent } from './setup/setup.component';
+import { SideMenuComponent } from '../side-menu/side-menu.component';
 
 @NgModule({
-  entryComponents:[SetupComponent, NetworkSelectionComponent,KeyConfigurationComponent, SecurityComponent, SummaryComponent],
+  entryComponents: [SetupComponent, NetworkSelectionComponent, KeyConfigurationComponent, SecurityComponent, SummaryComponent],
   imports: [
     CommonModule,
     CoreRoutingModule
   ],
-  declarations: [OverviewComponent,
+  declarations: [OverviewComponent, SideMenuComponent,
     WizardDirective,
-     NotFoundComponent, MessageComponent,NavigationBarComponent, HomeComponent, OverviewComponent],
+    NotFoundComponent, MessageComponent, NavigationBarComponent, HomeComponent, OverviewComponent],
   exports: [
     RouterModule,
     MessageComponent,

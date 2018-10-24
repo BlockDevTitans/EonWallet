@@ -24,9 +24,7 @@
               "src/favicon.256x256.png",
               "src/favicon.512x512.png"
             ],
-            "styles":
-            [
-              "node_modules/bootstrap-scss/bootstrap.scss",
+            "styles": [
               "src/styles.scss"
             ],
             "scripts": []

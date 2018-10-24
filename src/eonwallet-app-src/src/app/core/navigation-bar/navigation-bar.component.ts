@@ -1,19 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-// import { ModalAboutComponent } from '../../wallet/modal-about/modal-about.component';
+import { Component, OnInit, Input } from '@angular/core';
+import { trigger, state, transition, animate, style } from '@angular/animations';
 
 
 @Component({
   selector: 'app-navigation-bar',
   templateUrl: './navigation-bar.component.html',
-  styleUrls: ['./navigation-bar.component.scss']
+  styleUrls: ['./navigation-bar.component.scss'],
+  animations: [
+    trigger('slideInOut', [
+      state('in', style({
+        height: '0px',
+        display: 'none',
+        overflow: 'hidden'
+      })),
+      state('out', style({
+        height: 'calc( 100% - 86px)'
+      })),
+      transition('in => out', animate('500ms ease-in-out')),
+      transition('out => in', animate('500ms ease-in-out'))
+    ])
+  ]
 })
 export class NavigationBarComponent {
+  menuState = 'in';
 
-  // constructor(private modalService: NgbModal) { }
-
-  // myFunc(){
-  //   const modalRef = this.modalService.open(ModalAboutComponent);
-  //   modalRef.componentInstance.title = 'Settings';
-  // }
+  toggleMenu() {
+    this.menuState = this.menuState === 'out' ? 'in' : 'out';
+  }
 }

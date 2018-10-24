@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // NG Translate
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -24,17 +24,17 @@ import { KeyConfigurationComponent } from './core/setup/wallet/key-configuration
 import { SecurityComponent } from './core/setup/wallet/security/security.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SetupComponent } from './core/setup/setup.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
 // AoT requires an exported function for factories
-export function HttpLoaderFactory(http: HttpClient)
-{
+export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
-  entryComponents:[SetupComponent],
+  entryComponents: [SetupComponent],
   declarations: [
     AppComponent,
     WebviewDirective,
@@ -47,6 +47,7 @@ export function HttpLoaderFactory(http: HttpClient)
   imports: [
     NgbModule,
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     CoreModule,
@@ -60,7 +61,7 @@ export function HttpLoaderFactory(http: HttpClient)
       }
     })
   ],
-  
+
   providers: [ElectronService],
   bootstrap: [AppComponent]
 })
