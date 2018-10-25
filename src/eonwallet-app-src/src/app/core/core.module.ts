@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CoreRoutingModule } from './core-routing.module';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
-import { MessageComponent } from './message/message.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { HomeComponent } from './home/home.component';
 
@@ -25,12 +23,17 @@ import { NewAccountComponent } from '../new-account/new-account.component';
     CommonModule,
     CoreRoutingModule
   ],
-  declarations: [OverviewComponent, SideMenuComponent,
-    WizardDirective, NewAccountComponent,
-    NotFoundComponent, MessageComponent, NavigationBarComponent, HomeComponent, OverviewComponent],
+  declarations: [
+    OverviewComponent,
+    SideMenuComponent,
+    WizardDirective,
+    NewAccountComponent,
+    NavigationBarComponent,
+    HomeComponent,
+    OverviewComponent
+  ],
   exports: [
     RouterModule,
-    MessageComponent,
     CommonModule,
     NavigationBarComponent
   ]

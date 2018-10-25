@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, transition, animate, style } from '@angular/animations';
-import { AccountService } from '../../account.service';
+
 import { IAccount } from '../../models/account';
+import { AccountService } from '../../services/account.service';
 
 
 @Component({

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ElectronService } from './providers/electron.service';
-import { IAccount } from './models/account';
+import { IAccount } from '../models/account';
 import { reject } from 'q';
 import { Subject } from 'rxjs';
+import { ElectronService } from '../providers/electron.service';
 
 @Injectable({
   providedIn: 'root'
