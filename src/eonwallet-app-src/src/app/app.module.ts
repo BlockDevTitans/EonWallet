@@ -25,6 +25,8 @@ import { SecurityComponent } from './core/setup/wallet/security/security.compone
 import { ReactiveFormsModule } from '@angular/forms';
 import { SetupComponent } from './core/setup/setup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotificationComponent } from './notification/notification.component';
+import { NewAccountComponent } from './new-account/new-account.component';
 
 
 
@@ -42,7 +44,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SummaryComponent,
     SecurityComponent,
     KeyConfigurationComponent,
-    SetupComponent
+    SetupComponent,
+    NotificationComponent
   ],
   imports: [
     NgbModule,

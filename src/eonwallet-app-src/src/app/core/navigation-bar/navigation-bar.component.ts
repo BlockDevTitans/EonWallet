@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { trigger, state, transition, animate, style } from '@angular/animations';
+import { AccountService } from '../../account.service';
+import { IAccount } from '../../models/account';
 
 
 @Component({
@@ -14,15 +16,31 @@ import { trigger, state, transition, animate, style } from '@angular/animations'
         overflow: 'hidden'
       })),
       state('out', style({
-        height: 'calc( 100% - 86px)'
+        height: 'calc( 100% - 86px)',
+        overflow: 'auto'
       })),
       transition('in => out', animate('500ms ease-in-out')),
       transition('out => in', animate('500ms ease-in-out'))
     ])
   ]
 })
-export class NavigationBarComponent {
+export class NavigationBarComponent implements OnInit {
+
   menuState = 'in';
+  accounts: IAccount[];
+
+  public constructor(private accountService: AccountService) {
+  }
+
+  ngOnInit(): void {
+    this.accountService.subject.subscribe((newAccounts: IAccount[]) => {
+      this.accounts = newAccounts;
+    });
+
+    this.accountService.all().then((accounts) => {
+      this.accounts = accounts;
+    });
+  }
 
   toggleMenu() {
     this.menuState = this.menuState === 'out' ? 'in' : 'out';

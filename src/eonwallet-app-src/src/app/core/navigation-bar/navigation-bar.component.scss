@@ -6,10 +6,15 @@ nav{
     border-bottom: #d65c14 1px solid;
 }
 
+h4{
+    border-bottom: 2px solid darkblue;
+}
+
 .current-account{
     background-color:transparent; 
     border:none;
 }
+
 .menu-panel.position-absolute {
   right: 0;
   top: 60;
@@ -21,7 +26,6 @@ nav{
 .menu-panel.app-header-bar {
   z-index: 980;
 }
-
 
 .backdrop {
     background: rgba(0, 0, 0, 0.5);

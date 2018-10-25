@@ -3,7 +3,7 @@ $body-color: #111;
 $enable-rounded:false;
 
 $theme-colors: (
-  "danger": #ff4136
+  "primary": #27DBD0
 );
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
@@ -28,6 +28,9 @@ $theme-colors: (
   }
 }
 
+button{
+  text-transform: uppercase;
+}
 
 * {
   font-family: 'Montserrat', sans-serif;

@@ -1,0 +1,28 @@
+<div class="m-2" *ngIf="showNewAccount===false">
+  <button type="button" class="btn btn-primary w-100" (click)="newAccount($event)">New Account</button>
+</div>
+
+<div class="m-2" *ngIf="showNewAccount===true">
+  <h4>Account Creation</h4>
+  <p>To create an account please provide a name and a password.</p>
+  <p>Note: It's important that you keep this password secure, if you loose this password the account will not be
+    recoverable.</p>
+  <form novalidate>
+    <div class="form-group row">
+      <label for="account-name" class="col-sm-12 col-form-label col-form-label-sm">Account Name</label>
+      <div class="col-sm-12">
+        <input class="form-control form-control-sm" placeholder="Account name" formControlName="accountName">
+
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPassword3" class="col-sm-12 col-form-label col-form-label-sm">Password</label>
+      <div class="col-sm-12">
+        <input type="password" class="form-control form-control-sm" placeholder="password" formControlName="password"
+          name="password">
+      </div>
+    </div>
+  </form>
+  <button type="button" class="btn btn-link w-50" (click)="cancelCreation($event)">Cancel</button>
+  <button type="button" class="btn btn-primary w-50" (click)="createAccount($event)">Create</button>
+</div>

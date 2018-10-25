@@ -17,6 +17,7 @@ import { SecurityComponent } from './setup/wallet/security/security.component';
 import { OverviewComponent } from '../overview/overview.component';
 import { SetupComponent } from './setup/setup.component';
 import { SideMenuComponent } from '../side-menu/side-menu.component';
+import { NewAccountComponent } from '../new-account/new-account.component';
 
 @NgModule({
   entryComponents: [SetupComponent, NetworkSelectionComponent, KeyConfigurationComponent, SecurityComponent, SummaryComponent],
@@ -25,7 +26,7 @@ import { SideMenuComponent } from '../side-menu/side-menu.component';
     CoreRoutingModule
   ],
   declarations: [OverviewComponent, SideMenuComponent,
-    WizardDirective,
+    WizardDirective, NewAccountComponent,
     NotFoundComponent, MessageComponent, NavigationBarComponent, HomeComponent, OverviewComponent],
   exports: [
     RouterModule,

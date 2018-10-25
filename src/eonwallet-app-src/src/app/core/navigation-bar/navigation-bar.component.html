@@ -43,32 +43,19 @@
   </ul>
 </nav>
 
-<div [@slideInOut]="menuState" class="menu-panel bg-white position-absolute d-flex flex-column">
-  <div class="p-3 h-100">
+<div [@slideInOut]="menuState" class="w-25 menu-panel bg-white position-absolute d-flex flex-column">
+  <div class="p-3 h-100 w-100">
     <div class="h-100">
+      <app-new-account></app-new-account>
+      <hr />
       <div class="d-flex flex-column  h-100 w-100">
-        <div class=" m-2">
-          <button type="button" class="btn btn-default w-100">New Account</button>
-        </div>
-        <hr />
-        <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+        <h4>Current Accounts</h4>
+        <div class="list-group" *ngFor="let item of accounts">
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100">
-              <h5 class="mb-1">My Test Account</h5>
+              <h5 class="mb-1">{{item.name}}</h5>
             </div>
-            <small>EON-45ER4-ERTYU-WERTY</small>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Saving Account</h5>
-            </div>
-            <small>EON-45ER4-ERTYU-WERTY</small>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Bobbins Rainy day</h5>
-            </div>
-            <small>EON-45ER4-ERTYU-WERTY</small>
+            <small>{{item.accountId}}</small>
           </a>
         </div>
       </div>
