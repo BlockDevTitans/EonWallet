@@ -16,12 +16,14 @@ import { OverviewComponent } from '../overview/overview.component';
 import { SetupComponent } from './setup/setup.component';
 import { SideMenuComponent } from '../side-menu/side-menu.component';
 import { NewAccountComponent } from '../new-account/new-account.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   entryComponents: [SetupComponent, NetworkSelectionComponent, KeyConfigurationComponent, SecurityComponent, SummaryComponent],
   imports: [
     CommonModule,
-    CoreRoutingModule
+    CoreRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [
     OverviewComponent,

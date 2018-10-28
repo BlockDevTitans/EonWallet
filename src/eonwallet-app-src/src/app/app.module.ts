@@ -43,6 +43,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     KeyConfigurationComponent,
     SetupComponent
   ],
+  exports: [],
   imports: [
     NgbModule,
     BrowserModule,

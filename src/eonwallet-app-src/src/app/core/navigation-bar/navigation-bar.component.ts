@@ -29,6 +29,7 @@ export class NavigationBarComponent implements OnInit {
 
   menuState = 'in';
   accounts: IAccount[];
+  showDefaultAccount = false;
 
   public constructor(private accountService: AccountService) {
   }
@@ -36,6 +37,10 @@ export class NavigationBarComponent implements OnInit {
   ngOnInit(): void {
     this.accountService.subject.subscribe((newAccounts: IAccount[]) => {
       this.accounts = newAccounts;
+    });
+
+    this.accountService.exists.subscribe((newAccount: boolean) => {
+      this.showDefaultAccount = !newAccount;
     });
 
     this.accountService.all().then((accounts) => {

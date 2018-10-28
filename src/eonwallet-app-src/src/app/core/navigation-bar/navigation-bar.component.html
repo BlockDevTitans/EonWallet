@@ -32,7 +32,8 @@
       </li>
     </ul>
   </div>
-  <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+
+  <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex" *ngIf="showDefaultAccount === true">
     <li class="nav-item pl-3">
       <button type="button" class="btn btn-link shadow-none" aria-expanded="false" aria-label="Toggle navigation"
         (click)="toggleMenu()">
