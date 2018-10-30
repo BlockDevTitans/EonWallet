@@ -7,32 +7,26 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { HomeComponent } from './home/home.component';
 
 import { WizardDirective } from '../directives/wizardDirective.directive';
-import { NetworkSelectionComponent } from './setup/wallet/network-selection/network-selection.component';
-import { SummaryComponent } from './setup/wallet/summary/summary.component';
-import { KeyConfigurationComponent } from './setup/wallet/key-configuration/key-configuration.component';
-import { SecurityComponent } from './setup/wallet/security/security.component';
 
-import { OverviewComponent } from '../overview/overview.component';
-import { SetupComponent } from './setup/setup.component';
 import { SideMenuComponent } from '../side-menu/side-menu.component';
-import { NewAccountComponent } from '../new-account/new-account.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NewAccountComponent } from '../account-creation-process/new-account/new-account.component';
+import { SetupComponent } from '../account-creation-process/setup.component';
 
 @NgModule({
-  entryComponents: [SetupComponent, NetworkSelectionComponent, KeyConfigurationComponent, SecurityComponent, SummaryComponent],
+  entryComponents: [],
   imports: [
     CommonModule,
     CoreRoutingModule,
     ReactiveFormsModule
   ],
   declarations: [
-    OverviewComponent,
     SideMenuComponent,
     WizardDirective,
     NewAccountComponent,
     NavigationBarComponent,
     HomeComponent,
-    OverviewComponent
+    SetupComponent
   ],
   exports: [
     RouterModule,

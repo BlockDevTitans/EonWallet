@@ -15,10 +15,11 @@ export class StartupService implements CanActivate {
       this.rpc.sendCommand('wallet.IsNewSetup', null, (returnValue) => {
         if (returnValue === false) {
           this.router.navigate([`overview`]);
-        } else {
-          this.accountService.exists.next(returnValue);
-          resolve(returnValue);
+
         }
+        this.accountService.exists.next(returnValue);
+        resolve(returnValue);
+
       }
       );
     });

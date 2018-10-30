@@ -18,12 +18,7 @@ import { ElectronService } from './providers/electron.service';
 import { WebviewDirective } from './directives/webview.directive';
 
 import { AppComponent } from './app.component';
-import { NetworkSelectionComponent } from './core/setup/wallet/network-selection/network-selection.component';
-import { SummaryComponent } from './core/setup/wallet/summary/summary.component';
-import { KeyConfigurationComponent } from './core/setup/wallet/key-configuration/key-configuration.component';
-import { SecurityComponent } from './core/setup/wallet/security/security.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SetupComponent } from './core/setup/setup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WalletOverviewComponent } from './wallet-overview/wallet-overview.component';
 
@@ -34,15 +29,10 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  entryComponents: [SetupComponent],
+  entryComponents: [],
   declarations: [
     AppComponent,
     WebviewDirective,
-    NetworkSelectionComponent,
-    SummaryComponent,
-    SecurityComponent,
-    KeyConfigurationComponent,
-    SetupComponent,
     WalletOverviewComponent
   ],
   exports: [],
