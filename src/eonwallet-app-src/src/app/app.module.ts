@@ -25,6 +25,7 @@ import { SecurityComponent } from './core/setup/wallet/security/security.compone
 import { ReactiveFormsModule } from '@angular/forms';
 import { SetupComponent } from './core/setup/setup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WalletOverviewComponent } from './wallet-overview/wallet-overview.component';
 
 
 // AoT requires an exported function for factories
@@ -41,7 +42,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SummaryComponent,
     SecurityComponent,
     KeyConfigurationComponent,
-    SetupComponent
+    SetupComponent,
+    WalletOverviewComponent
   ],
   exports: [],
   imports: [

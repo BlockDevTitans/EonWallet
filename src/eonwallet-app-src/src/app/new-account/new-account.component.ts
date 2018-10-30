@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AccountService } from '../services/account.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class NewAccountComponent implements OnInit {
   meterReadingForm: FormGroup;
 
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private readonly router: Router,
+    private readonly route: ActivatedRoute) { }
 
   ngOnInit() {
     this.meterReadingForm = new FormGroup({
@@ -31,7 +33,9 @@ export class NewAccountComponent implements OnInit {
 
   createAccount() {
     console.log(this.meterReadingForm);
-    this.accountService.create(this.meterReadingForm.value.accountName, this.meterReadingForm.value.password);
+    this.accountService.create(this.meterReadingForm.value.accountName, this.meterReadingForm.value.password).then(() => {
+      this.router.navigate([`overview`]);
+    });
   }
 
   cancelCreation() {

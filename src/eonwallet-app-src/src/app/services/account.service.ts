@@ -21,10 +21,6 @@ export class AccountService {
   public exists = new Subject();
 
   constructor(private rpc: ElectronService, private spinnerService: Ng4LoadingSpinnerService) {
-    this.rpc.sendCommand('wallet.IsNewSetup', null, (returnValue) => {
-      console.log('IsNewSetup', returnValue);
-      this.exists.next(returnValue);
-    });
   }
 
 
