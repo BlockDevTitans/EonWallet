@@ -17,8 +17,7 @@ import { AccountService } from '../../services/account.service';
         overflow: 'hidden'
       })),
       state('out', style({
-        height: 'calc( 100% - 86px)',
-        overflow: 'auto'
+        overflow: 'hidden'
       })),
       transition('in => out', animate('500ms ease-in-out')),
       transition('out => in', animate('500ms ease-in-out'))

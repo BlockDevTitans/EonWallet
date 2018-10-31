@@ -17,20 +17,11 @@ h4{
 
 .menu-panel.position-absolute {
   right: 0;
-  top: 60;
+  top: 60px;
   box-shadow: 0 0.7rem 1rem rgba(0, 0, 0, 0.3) !important;
-  height: calc(100% - 80px);
   z-index: 970;
 }
 
 .menu-panel.app-header-bar {
   z-index: 980;
 }
-
-.backdrop {
-    background: rgba(0, 0, 0, 0.5);
-    left: 0;
-    top: 60;
-    height: calc(100% - 110px);
-    z-index: 90;
-  }
