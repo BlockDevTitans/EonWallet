@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Dynamic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +20,6 @@ namespace api.IPC
 			while (true)
 			{
 				var msg = service.InQueue.Take();
-
 				var kv = msg.type.Split('.');
 				if (classMap.TryGetValue(kv[0] + "controller", out object cls))
 				{
@@ -29,17 +28,25 @@ namespace api.IPC
 					{
 						data = array.ToObject<object[]>();
 					}
-					var mi = cls.GetType().GetMethod(kv[1], data == null ? new Type[0] : data.Select(o => o.GetType()).ToArray());
-					if (mi.ReturnType.GetMethod("GetAwaiter") != null)
+					var property = cls.GetType().GetProperty(kv[1]);
+					if (property == null)
 					{
-						var ts = Task.Run(async () => await (dynamic)mi.Invoke(cls, data)).ContinueWith(t =>
+						var mi = cls.GetType().GetMethod(kv[1], data == null ? new Type[0] : data.Select(o => o.GetType()).ToArray());
+						if (mi.ReturnType.GetMethod("GetAwaiter") != null)
 						{
-							service.OutQueue.Add(new Message { type = msg.type, data = t.Result });
-						});
+							var ts = Task.Run(async () => await (dynamic)mi.Invoke(cls, data)).ContinueWith(t =>
+							{
+								service.OutQueue.Add(new Message { type = msg.type, data = t.Result });
+							});
+						}
+						else
+						{
+							service.OutQueue.Add(new Message { type = msg.type, data = mi.Invoke(cls, data) });
+						}
 					}
 					else
 					{
-						service.OutQueue.Add(new Message { type = msg.type, data = mi.Invoke(cls, data) });
+						service.OutQueue.Add(new Message { type = msg.type, data = property.GetValue(cls) });
 					}
 				}
 			}
