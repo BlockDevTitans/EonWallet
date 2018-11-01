@@ -23,6 +23,13 @@ export class AccountService {
   constructor(private rpc: ElectronService, private spinnerService: Ng4LoadingSpinnerService) {
   }
 
+  public init(): Promise<void> {
+    return new Promise((resolve) =>
+      this.rpc.sendCommand('wallet.Wallets', null, (returnValue) => {
+        console.log(returnValue);
+        resolve();
+      }));
+  }
 
   public create(name: string, password: string): Promise<IAccount> {
     return new Promise((resolve) => {
