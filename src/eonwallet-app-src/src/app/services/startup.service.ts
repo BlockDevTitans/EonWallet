@@ -17,7 +17,7 @@ export class StartupService implements CanActivate {
           this.router.navigate([`overview`]);
           this.accountService.init();
         }
-        this.accountService.exists.next(returnValue);
+
         resolve(returnValue);
 
       }

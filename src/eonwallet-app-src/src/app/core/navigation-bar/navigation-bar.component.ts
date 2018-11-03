@@ -29,22 +29,22 @@ export class NavigationBarComponent implements OnInit {
   menuState = 'in';
   accounts: IAccount[];
   showDefaultAccount = false;
+  defaultAccount: IAccount;
 
   public constructor(private accountService: AccountService) {
   }
 
   ngOnInit(): void {
-    this.accountService.subject.subscribe((newAccounts: IAccount[]) => {
+    this.accountService.Accounts.subscribe((newAccounts: IAccount[]) => {
       this.accounts = newAccounts;
+      this.defaultAccount = this.accounts[0];
     });
 
     this.accountService.exists.subscribe((newAccount: boolean) => {
       this.showDefaultAccount = !newAccount;
     });
 
-    this.accountService.all().then((accounts) => {
-      this.accounts = accounts;
-    });
+    this.accountService.init();
   }
 
   toggleMenu() {
