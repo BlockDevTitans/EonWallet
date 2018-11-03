@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Dynamic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +20,6 @@ namespace api.IPC
 			while (true)
 			{
 				var msg = service.InQueue.Take();
-
 				var kv = msg.type.Split('.');
 				if (classMap.TryGetValue(kv[0] + "controller", out object cls))
 				{
@@ -29,6 +28,7 @@ namespace api.IPC
 					{
 						data = array.ToObject<object[]>();
 					}
+<<<<<<< HEAD
                    var property =  cls.GetType().GetProperty(kv[1]);
                     if(property == null) { 
 
