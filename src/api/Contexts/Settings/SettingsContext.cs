@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace api.Contexts.Settings
 {
-	class SettingsContext : INotifyPropertyChanged
+    class SettingsContext : INotifyPropertyChanged
 	{
 		#region INotifyPropertyChanged
 
@@ -44,13 +40,15 @@ namespace api.Contexts.Settings
 			}
 			if (System.IO.File.Exists(path))
 			{
+               
 				Newtonsoft.Json.JsonConvert.PopulateObject(System.IO.File.ReadAllText(path), this);
 			}
 			else
 			{
 				Save();
 			}
-		}
+            this.Exists = true;
+        }
 
 		public void Save()
 		{
@@ -90,9 +88,11 @@ namespace api.Contexts.Settings
 				OnPropertyChanged();
 			}
 		}
-		string _language = "en";
+        string _language = "en";
 
-		public string Wallets { get; set; }
+        public bool Exists { get; set; } = false; 
+
+        public string Wallets { get; set; }
 
 	}
 }

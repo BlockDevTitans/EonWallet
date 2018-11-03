@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace api.Contexts.Settings.Controllers
 {
-	class SettingsController : INotifyPropertyChanged
+    class SettingsController : INotifyPropertyChanged
 	{
 		#region INotifyPropertyChanged
 
@@ -62,6 +59,7 @@ namespace api.Contexts.Settings.Controllers
 		//it's called from js side like this: this.electronService.sendCommand("settings.Save", null, null);
 		public void Save() => _context.Save();
 
+        public bool Exist() =>  _context.Exists;
 
 		//the following are properties that are serialized to js side from a GetState call
 
@@ -69,10 +67,7 @@ namespace api.Contexts.Settings.Controllers
 
 		public string Network => _context.NetworkAddress;
 
-		public string Language => _context.Language;
-
-
-
+        public string Language => _context.Language;
 
 	}
 }

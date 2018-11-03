@@ -37,7 +37,9 @@
     "e2e": "npm run postinstall:web && ng e2e"
   },
   "dependencies": {
-    "@ng-bootstrap/ng-bootstrap": "^3.2.0",
+    "@angular/animations": "^7.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^3.3.0",
+    "ng4-loading-spinner": "^1.2.3",
     "node-ipc": "^9.1.1"
   },
   "devDependencies": {
@@ -50,7 +52,7 @@
     "@angular/forms": "6.1.2",
     "@angular/http": "6.1.2",
     "@angular/language-service": "6.1.2",
-    "@angular/platform-browser": "6.1.2",
+    "@angular/platform-browser": "^6.1.2",
     "@angular/platform-browser-dynamic": "6.1.2",
     "@angular/router": "6.1.2",
     "@ngx-translate/core": "10.0.1",

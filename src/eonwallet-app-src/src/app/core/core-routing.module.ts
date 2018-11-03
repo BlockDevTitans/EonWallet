@@ -1,14 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { HomeComponent } from './home/home.component';
+import { WalletOverviewComponent } from '../wallet-overview/wallet-overview.component';
+import { StartupService } from '../services/startup.service';
+import { SetupComponent } from '../account-creation-process/setup.component';
 
 // import { WalletModule } from '../wallet/wallet.module';
 
 const routes: Routes = [
   {
-    path: '*',
-    component: HomeComponent
+    path: '',
+    component: SetupComponent,
+    canActivate: [StartupService]
+  },
+  {
+    path: 'overview',
+    component: WalletOverviewComponent,
+    pathMatch: 'full'
   }
 ];
 
