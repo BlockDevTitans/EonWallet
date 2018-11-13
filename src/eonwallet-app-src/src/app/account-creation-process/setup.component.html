@@ -1,0 +1,27 @@
+<div class="d-flex flex-column align-items-center justify-content-center" style="height: 100vh">
+    <h3>Welcome to Exscudo desktop wallet</h3>
+    <div class="container">
+        <div *ngIf="showChoice===true">
+            <p>To begin, we need some configuration to detemrine how to set up your wallet. If you restoring
+                from a
+                previous
+                installation and have the details, please select 'import existing account'. If you're wanting to setup
+                a
+                new account, click the 'create new account and we'll get started</p>
+            <div class="d-flex flex-row w-100 justify-content-center">
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-around">
+                            <button type="button" class="btn btn-default m-2">Import
+                                existing account</button>
+                            <button class="btn btn-primary m-2" (click)="createNewAccount($event)">Create new account</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="showNewAccount===true">
+            <app-new-account [showNewAccount]=true [allowCancel]=false></app-new-account>
+        </div>
+    </div>

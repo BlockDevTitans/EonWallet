@@ -55,6 +55,10 @@ namespace api.Contexts.Wallet.Controllers
 
 		public IEnumerable<EonSharp.Wallet> Wallets => _context.WalletsCollection;
 
+        public bool IsNewSetup() {
+           return _context.WalletsCollection.Count == 0;
+        } // this._context.WalletsCollection.Count == 0;
+
 		//it's called from js side like this: this.electronService.sendCommand("wallet.AddWallet", [ 'the name', 'the passwd' ], (returnValue) => { ...do something with returnValue });
 		// returnValue is a serialized version of the newly created wallet
 		public async Task<EonSharp.Wallet> AddWallet(string name, string password) => await _context.AddWallet(name, password);

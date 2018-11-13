@@ -1,4 +1,27 @@
-button{
+nav{
+    border-bottom:1px solid grey;
+}
+
+.navbar-nav > .active{
+    border-bottom: #d65c14 1px solid;
+}
+
+h4{
+    border-bottom: 2px solid darkblue;
+}
+
+.current-account{
+    background-color:transparent; 
     border:none;
-    background-color:transparent;
+}
+
+.menu-panel.position-absolute {
+  right: 0;
+  top: 60px;
+  box-shadow: 0 0.7rem 1rem rgba(0, 0, 0, 0.3) !important;
+  z-index: 970;
+}
+
+.menu-panel.app-header-bar {
+  z-index: 980;
 }
