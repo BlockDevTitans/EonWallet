@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,20 @@ namespace api.Contexts.Wallet
 		public WalletContext(Settings.SettingsContext ctx)
 		{
 			this._settings = ctx;
+
+			this.WalletsCollection.CollectionChanged += (s, e) =>
+			{
+				switch (e.Action)
+				{
+					case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+						foreach (EonSharp.Wallet wallet in e.NewItems)
+						{
+							wallet.SetAutoRefresh(true, this._eonclient, 10000);
+							wallet.SetTransactionsAutoRefresh(true, this._eonclient, 10000);
+						}
+						break;
+				}
+			};
 
 			InitializeEonClient();
 			InitializeWallets();
@@ -86,9 +101,35 @@ namespace api.Contexts.Wallet
 		public async Task<Info> GetAccountInformation(string accountid)
 		{
 			var wallet = this.WalletsCollection.FirstOrDefault(w => w.AccountDetails.AccountId.Equals(accountid, StringComparison.OrdinalIgnoreCase));
-			await wallet.RefreshAsync(this._eonclient);
-			return wallet.Information;
-			
+			if (wallet != null)
+			{
+				await wallet.RefreshAsync(this._eonclient);
+				return wallet.Information;
+			}
+			return null;
 		}
+
+		public async Task<object> GetPrivateAccountDetails(string accountid, string password)
+		{
+			return await Task.Run(() =>
+			{
+				var wallet = this.WalletsCollection.FirstOrDefault(w => w.AccountDetails.AccountId.Equals(accountid, StringComparison.OrdinalIgnoreCase));
+				if (wallet != null)
+				{
+					var pk = wallet.GetPrivateKey(password);
+					var accgen = new EonSharp.Generators.AccountGenerator(pk);
+					dynamic res = new ExpandoObject();
+					res.WalletName = wallet.Name;
+					res.AccountId = accgen.AccountId;
+					res.AccountNumber = accgen.AccountNumber;
+					res.PrivateKey = accgen.PrivateKeyToString();
+					res.PublicKey = accgen.PublicKeyToString();
+					return res;
+				}
+				return null;
+			});
+		}
+
+
 	}
 }

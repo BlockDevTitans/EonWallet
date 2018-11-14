@@ -26,7 +26,22 @@ namespace api.Contexts.Wallet.Controllers
 
 			//the events can be caught in js side by registering once like this: this.electronService.registerForEvents("wallet", (args) => { ...do something with args });
 			// args contains a serialized version of the wallets collection like this: args.Wallets
-			_context.WalletsCollection.CollectionChanged += (s, e) => OnPropertyChanged("Wallets");
+			_context.WalletsCollection.CollectionChanged += (s, e) =>
+			{
+				switch (e.Action)
+				{
+					case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+						foreach (EonSharp.Wallet wallet in e.NewItems)
+						{
+							wallet.PropertyChanged += (ps, p) =>
+							{
+								OnPropertyChanged("Wallets");
+							};
+						}
+						break;
+				}
+				OnPropertyChanged("Wallets");
+			};
 		}
 
 		readonly WalletContext _context;
@@ -60,5 +75,9 @@ namespace api.Contexts.Wallet.Controllers
 		//it's called from js side like this: this.electronService.sendCommand("wallet.GetAccountInformation", [ 'account id' ], (returnValue) => { ...do something with returnValue });
 		// returnValue is a serialized version of the Info class containing information like the balance, deposit, account type etc..
 		public async Task<EonSharp.Api.Info> GetAccountInformation(string accountid) => await _context.GetAccountInformation(accountid);
+
+		//it's called from js side like this: this.electronService.sendCommand("wallet.GetPrivateAccountDetails", [ 'account id', 'wallet password' ], (returnValue) => { ...do something with returnValue });
+		// returnValue is a serialized version of a dynamic object containing the following information WalletName, AccountId, AccountNumber, PrivateKey, PublicKey
+		public async Task<object> GetPrivateAccountDetails(string accountid, string password) => await _context.GetPrivateAccountDetails(accountid, password);
 	}
 }
