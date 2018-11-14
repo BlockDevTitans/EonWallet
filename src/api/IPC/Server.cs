@@ -28,7 +28,7 @@ namespace api.IPC
 					{
 						data = array.ToObject<object[]>();
 					}
-<<<<<<< HEAD
+
                    var property =  cls.GetType().GetProperty(kv[1]);
                     if(property == null) { 
 

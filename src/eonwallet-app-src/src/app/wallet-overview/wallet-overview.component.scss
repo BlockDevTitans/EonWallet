@@ -1,0 +1,98 @@
+.card-top-nav{
+	border-bottom:1px solid #E3E3E3;
+}
+
+.nav{
+	
+	border:none;
+}
+
+.nav-item{
+	border:none !important;
+}
+
+.nav-tabs .nav-link{
+	border:none;
+}
+
+a {
+	color:black;
+}
+
+.nav-link.active{
+	border-left:none;
+	border-right:none;
+	border-top:none;
+	padding-bottom:9px;
+	border-bottom:2px solid #009D92 !important;
+	color:#009D92 !important;
+}
+
+.progress{
+    height:5px;
+}
+
+.data-row{
+    		display:flex;
+    		flex-direction:column;
+    		background:#26282c;
+    		color:#e7e9ea;
+    		padding:20px;
+    		border-radius:3px;
+    		margin-bottom:20px;
+    		font-size:1rem;
+    	}
+
+    	.data-row strong{
+    		font-weight:normal;
+    		font-size:1.2rem;
+    		margin-bottom:8px;
+    		margin-top:8px;
+    		display:block;
+    	}
+
+    	.coin{font-size:1.2rem;}
+
+    	.coin strong{
+    		font-size:1rem;
+    		margin:0;
+    		display:inline-block;
+    		color:#7e8a91;
+    	}
+
+    	.coin, .available, .in-orders, .total, .action{
+    		padding:10px 0;
+    		text-align:center;
+    	}
+
+    	.data-row div span{
+    		display:block;
+    	}
+
+    	.data-row .coin{
+    		display:flex;
+    		justify-content:center;
+    		align-items:center;
+    	}
+
+    	.data-row .coin img{
+    		width:24px;
+    		height:24px;
+    		margin-right:6px;
+    	}
+
+    	.amount-usd{
+    		font-size:0.8rem;
+    		color:#7e8a91;
+    	}
+
+    	.data-row a{
+    		color:#c5d9e5;
+    		padding:20px;
+    		background:#202225;
+    		font-size:1rem;
+    		margin:5px 5px 5px 5px;
+    		display:inline-block;
+    	}
+
+    	.data-row a:hover{color:#fff;}

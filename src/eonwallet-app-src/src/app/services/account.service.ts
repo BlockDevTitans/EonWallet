@@ -21,7 +21,7 @@ export class AccountService {
   }
 
   public init(): Promise<void> {
-    return new Promise((resolve) =>
+    return new Promise((resolve) => {
       this.rpc.sendCommand('wallet.Wallets', [], (returnValue: Array<any>) => {
         console.log(returnValue);
         const res = returnValue.map(each => <IAccount>{
@@ -30,7 +30,8 @@ export class AccountService {
         });
         this._accounts.next(res);
         resolve();
-      }));
+      });
+    });
   }
 
   public create(name: string, password: string): Promise<IAccount> {
