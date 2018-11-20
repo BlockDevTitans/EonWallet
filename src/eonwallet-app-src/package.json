@@ -39,7 +39,9 @@
   "dependencies": {
     "@angular/animations": "^7.0.0",
     "@ng-bootstrap/ng-bootstrap": "^3.3.0",
+    "bootstrap": "^4.1.1",
     "ng4-loading-spinner": "^1.2.3",
+    "ngx-bootstrap": "^3.1.1",
     "node-ipc": "^9.1.1"
   },
   "devDependencies": {

@@ -1,0 +1,6 @@
+<div *ngIf="requiresPassword===true">
+    <app-password (PasswordEntered)="doSomething($event)"></app-password>
+</div>
+<div *ngIf="requiresPassword===false">
+    <app-key-details [Keys]="KeyDetails"></app-key-details>
+</div>
