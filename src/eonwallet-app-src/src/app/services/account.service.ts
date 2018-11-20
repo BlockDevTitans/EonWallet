@@ -13,9 +13,11 @@ export class AccountService {
   private _accounts: BehaviorSubject<Array<any>> = new BehaviorSubject(Array([]));
   private _exists: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
+  private _currentAccount: BehaviorSubject<string> = new BehaviorSubject('');
+
   public readonly Accounts: Observable<Array<any>> = this._accounts.asObservable();
   public readonly exists: Observable<boolean> = this._exists.asObservable();
-
+  public readonly CurrentAccount: Observable<string> = this._currentAccount.asObservable();
 
   constructor(private rpc: ElectronService, private spinnerService: Ng4LoadingSpinnerService) {
   }
@@ -28,6 +30,9 @@ export class AccountService {
           accountId: each.accountdetails.accountid,
           name: each.name
         });
+        if (res.length > 0) {
+          this._currentAccount.next(res[0].accountId);
+        }
         this._accounts.next(res);
         resolve();
       });

@@ -21,7 +21,11 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WalletOverviewComponent } from './wallet-overview/wallet-overview.component';
-
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { TransactionHistoryComponent } from './wallet-overview/transaction-history/transaction-history.component';
+import { AccountSettingsComponent } from './wallet-overview/account-settings/account-settings.component';
+import { PasswordComponent } from './wallet-overview/password/password.component';
+import { KeyDetailsComponent } from './wallet-overview/key-details/key-details.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -33,10 +37,15 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     WebviewDirective,
-    WalletOverviewComponent
+    WalletOverviewComponent,
+    TransactionHistoryComponent,
+    AccountSettingsComponent,
+    PasswordComponent,
+    KeyDetailsComponent
   ],
   exports: [],
   imports: [
+    TabsModule.forRoot(),
     NgbModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -51,7 +60,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: (HttpLoaderFactory),
         deps: [HttpClient]
       }
-    })
+    }),
+    TabsModule.forRoot()
   ],
 
   providers: [ElectronService],

@@ -11,5 +11,4 @@ export class WalletOverviewComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
