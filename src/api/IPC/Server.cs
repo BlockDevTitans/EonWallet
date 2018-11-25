@@ -29,26 +29,41 @@ namespace api.IPC
 						data = array.ToObject<object[]>();
 					}
 
-                   var property =  cls.GetType().GetProperty(kv[1]);
-                    if(property == null) { 
-
-					var mi = cls.GetType().GetMethod(kv[1], data == null ? new Type[0] : data.Select(o => o.GetType()).ToArray());
-                        if (mi.ReturnType.GetMethod("GetAwaiter") != null)
-                        {
-                            var ts = Task.Run(async () => await (dynamic)mi.Invoke(cls, data)).ContinueWith(t =>
-                            {
-                                service.OutQueue.Add(new Message { type = msg.type, data = t.Result });
-                            });
-                        }
-                        else
-                        {
-                            service.OutQueue.Add(new Message { type = msg.type, data = mi.Invoke(cls, data) });
-                        }
-                    } else
-                    {
-                        service.OutQueue.Add(new Message { type = msg.type, data = property.GetValue(cls) });
-                    }
-
+					var property = cls.GetType().GetProperty(kv[1]);
+					if (property == null)
+					{
+						var mi = cls.GetType().GetMethod(kv[1], data == null ? new Type[0] : data.Select(o => o.GetType()).ToArray());
+						if (mi.ReturnType.GetMethod("GetAwaiter") != null)
+						{
+							var ts = Task.Run(async () => await (dynamic)mi.Invoke(cls, data)).ContinueWith(t =>
+							{
+								try
+								{
+									service.OutQueue.Add(new Message { type = msg.type, data = t.Result });
+								}
+								catch (Exception ex)
+								{
+									SendException(msg.type, ex);
+								}
+							});
+						}
+						else
+						{
+							try
+							{
+								var res = mi.Invoke(cls, data);
+								service.OutQueue.Add(new Message { type = msg.type, data = res });
+							}
+							catch (Exception ex)
+							{
+								SendException(msg.type, ex);
+							}
+						}
+					}
+					else
+					{
+						service.OutQueue.Add(new Message { type = msg.type, data = property.GetValue(cls) });
+					}
 				}
 			}
 		}
@@ -90,6 +105,15 @@ namespace api.IPC
 		public void SendMessage(Message msg)
 		{
 			service?.OutQueue.Add(msg);
+		}
+
+		public void SendException(string type, Exception ex)
+		{
+			while (ex.InnerException != null)
+			{
+				ex = ex.InnerException;
+			}
+			service?.OutQueue.Add(new Message { type = type, data = ex });
 		}
 
 	}

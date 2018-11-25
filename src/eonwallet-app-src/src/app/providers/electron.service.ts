@@ -37,12 +37,17 @@ export class ElectronService
 
 
 
-  public sendCommand(cmd: string, parms: any[], callback): void
+  public sendCommand(cmd: string, parms: any[], callback, errorcallback?): void
   {
     if (callback != null)
     {
       this.ipcRenderer.once(cmd, (event, args) =>
       {
+        if (errorcallback && args != null && args.ClassName != null && args.ClassName.includes('Exception'))
+        {
+          errorcallback(args);
+          return;
+        }
         callback(args);
       });
     }
