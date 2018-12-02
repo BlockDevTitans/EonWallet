@@ -2,54 +2,66 @@
 $body-color: #111;
 $enable-rounded:false;
 
-$theme-colors: (
-  "primary": #27DBD0
-);
+// $theme-colors: (
+//   "primary": #27DBD0
+// );
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 
-@import "../node_modules/bootstrap-scss/bootstrap.scss";
+ @import "../node_modules/bootstrap-scss/bootstrap.scss";
 
+html{
+  height:100%;
+  width:100%;
+
+}
 body{
-  background-color:#F3F4F5
+  position: relative;
+  height:100%;
+  width:100%;
 }
 
-.green-border-top {
-  border-top: 2px solid #27DBD0;
+
+#menu{
+  background-color:white;
 }
 
-.ex-card-title {
-  background-color: #009D92;
-  color:white;
-  padding-top:8px;
-  padding-bottom:8px;
-  padding-left:5px;
+// .green-border-top {
+//   border-top: 2px solid #27DBD0;
+// }
 
-}
- .navbar {
-    background-color:white;
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-right:0;
+// .ex-card-title {
+//   background-color: #009D92;
+//   color:white;
+//   padding-top:8px;
+//   padding-bottom:8px;
+//   padding-left:5px;
 
-    ul {
-      padding:8px;
-    }
-  }
+// }
+//  .navbar {
+//     background-color:white;
+//     padding-top: 0;
+//     padding-bottom: 0;
+//     padding-right:0;
 
-  .nav-pills .nav-link {
-    padding-top: 15px;
-    padding-bottom: 30px;
-    border-radius: 0;
-  }
-@media only screen and (min-width: 991px) {
+//     ul {
+//       padding:8px;
+//     }
+//   }
+
+//   .nav-pills .nav-link {
+//     padding-top: 15px;
+//     padding-bottom: 30px;
+//     border-radius: 0;
+//   }
+// @media only screen and (min-width: 991px) {
  
-}
+// }
 
-button{
-  text-transform: uppercase;
-}
+// button{
+//   text-transform: uppercase;
+// }
 
-* {
-  font-family: 'Montserrat', sans-serif;
-}
+// * {
+//   font-family: 'Montserrat', sans-serif;
+// }

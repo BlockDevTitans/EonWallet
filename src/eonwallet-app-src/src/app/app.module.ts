@@ -26,6 +26,7 @@ import { TransactionHistoryComponent } from './wallet-overview/transaction-histo
 import { AccountSettingsComponent } from './wallet-overview/account-settings/account-settings.component';
 import { PasswordComponent } from './wallet-overview/password/password.component';
 import { KeyDetailsComponent } from './wallet-overview/key-details/key-details.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -41,7 +42,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TransactionHistoryComponent,
     AccountSettingsComponent,
     PasswordComponent,
-    KeyDetailsComponent
+    KeyDetailsComponent,
+    PortfolioComponent
   ],
   exports: [],
   imports: [

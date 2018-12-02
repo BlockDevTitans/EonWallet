@@ -38,13 +38,13 @@ export class NavigationBarComponent implements OnInit {
     this.accountService.Accounts.subscribe((newAccounts: IAccount[]) => {
       this.accounts = newAccounts;
       this.defaultAccount = this.accounts[0];
+      this.showDefaultAccount = true;
+      alert();
     });
 
     this.accountService.exists.subscribe((newAccount: boolean) => {
       this.showDefaultAccount = !newAccount;
     });
-
-    this.accountService.init();
   }
 
   toggleMenu() {

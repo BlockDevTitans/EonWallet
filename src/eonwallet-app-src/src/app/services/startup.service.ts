@@ -8,10 +8,16 @@ import { AccountService } from './account.service';
 })
 export class StartupService implements CanActivate {
 
-  constructor(private rpc: ElectronService, private router: Router, private accountService: AccountService) { }
+  constructor(private rpc: ElectronService, private router: Router, private accountService: AccountService) {
+    this.rpc.registerForEvents('wallet', (result) => {
+      console.log(result);
+      alert('event fired');
+    });
+  }
 
   canActivate(): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
+
       this.rpc.sendCommand('wallet.IsNewSetup', null, (returnValue) => {
         if (returnValue === false) {
           this.router.navigate([`overview`]);

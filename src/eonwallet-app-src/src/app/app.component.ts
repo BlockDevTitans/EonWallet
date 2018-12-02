@@ -9,53 +9,43 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent 
-{
+export class AppComponent {
   eoncoreSettings = undefined;
 
-  constructor(public electronService: ElectronService, private translate: TranslateService)
-  {
+  constructor(public electronService: ElectronService, private translate: TranslateService) {
     translate.setDefaultLang('en');
     console.log('AppConfig', AppConfig);
 
-    if (electronService.isElectron())
-    {
+    if (electronService.isElectron()) {
       console.log('Mode electron');
       console.log('Electron ipcRenderer', electronService.ipcRenderer);
       console.log('NodeJS childProcess', electronService.childProcess);
 
-      electronService.sendCommand("settings.GetState", null, (res) =>
-      {
-        if (res != null)
-        {
+      electronService.sendCommand("settings.GetState", null, (res) => {
+        if (res != null) {
           this.eoncoreSettings = res;
           this.parseSettings();
         }
       });
 
-      electronService.registerForEvents("settings", (args) =>
-      {
-        if (args != null)
-        {
+      electronService.registerForEvents("settings", (args) => {
+        if (args != null) {
           this.eoncoreSettings = args;
           this.parseSettings();
         }
       });
 
     }
-    else
-    {
+    else {
       console.log('Mode web');
     }
   }
 
-  private log(message: string): void
-  {
+  private log(message: string): void {
     process.stdout.write(message);
   }
 
-  private parseSettings(): void
-  {
+  private parseSettings(): void {
     this.translate.use(this.eoncoreSettings.Language);
   }
 
