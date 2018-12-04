@@ -9,10 +9,28 @@ import { AccountService } from './account.service';
 export class StartupService implements CanActivate {
 
   constructor(private rpc: ElectronService, private router: Router, private accountService: AccountService) {
+
+    alert('registering for events within the wallet');
+
     this.rpc.registerForEvents('wallet', (result) => {
-      console.log(result);
-      alert('event fired');
+
+      console.log('event fired', result);
     });
+
+    this.canActivate().then((res) => {
+      console.log('*************', res);
+
+    });
+
+    this.rpc.sendCommand('wallet.GetState', [], (returnValue: Array<any>) => {
+      // this.rpc.sendCommand('wallet.AddWallet', ['name', 'test'], (returnV) => {
+      //   console.log(returnV);
+      // });
+    });
+
+    this.rpc.sendCommand('wallet.GetAccountInformation', ['EON-ZPAX2-EMFJ5-HKBTX'],
+      (returnValue) => { console.log('getAccountInfo', returnValue); },
+      () => { alert('error'); });
   }
 
   canActivate(): Promise<boolean> {
