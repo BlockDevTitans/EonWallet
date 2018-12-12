@@ -1,0 +1,30 @@
+.app-header-bar {
+  background-color: #0ac97e;
+  height: 60px;
+  z-index: 990;
+}
+
+.app-header-menu {
+  background-color: #334464;
+}
+
+.app-header-brand {
+  background-color: #0277bd;
+}
+
+.app-header-menu li {
+  cursor: pointer;
+}
+
+.app-header-menu li.selected {
+  border-bottom: 2px solid #0277bd;
+}
+
+.app-header-toolbar {
+  right: 0;
+  top: 17px;
+}
+
+.app-header-toolbar li {
+  cursor: pointer;
+}

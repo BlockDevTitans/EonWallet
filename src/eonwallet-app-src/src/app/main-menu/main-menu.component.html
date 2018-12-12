@@ -1,0 +1,42 @@
+<div class="page">
+  <div class="page-header d-flex align-items-center">
+    <div class="ml-3 font-small text-muted font-weight-medium event-page-nav" (click)="handleBackClick()">
+      <span class="mr-2 py-1 px-2 rounded border border-secondary bg-light text-muted event-page-nav">
+        <em class="fa fa-chevron-left">
+        </em>
+      </span> Back
+    </div>
+  </div>
+  <div class="page-body" style="font-family: 'Roboto', sans-serif;">
+    <div class="d-flex flex-column align-items-center justify-content-center h-100 w-100">
+      <div class="d-flex align-items-stretch ">
+        <div class="d-flex flex-row w-100 justify-content-center">
+          <div class="card shadow rounded h-100 m-3" style="width: 15rem;">
+            <div class="d-flex flex-row w-100 py-3 justify-content-center border-bottom align-items-center text-white"
+              style="background-color:grey;">
+              <h3>Restore backup</h3>
+            </div>
+            <div class="d-flex flex-row w-100 p-3 justify-content-center align-items-center h-100">
+              <i class="fa fa-file" aria-hidden="true" style="font-size:4em; color:grey"></i>
+            </div>
+            <div class="d-flex flex-row w-100 align-items-end justify-content-center h-100 m-2 p-2">
+              You will need the account credentials to gain access to the account.
+            </div>
+          </div>
+          <div class="card shadow rounded h-100 m-3" style="width: 15em;" (click)="createNewWallet()">
+            <div class="d-flex flex-row w-100 p-3 justify-content-center border-bottom align-items-center text-white"
+              style="background-color:#0ac97e;">
+              <h3>New Account</h3>
+            </div>
+            <div class="d-flex flex-row w-100 p-3 justify-content-center align-items-center  h-100">
+              <i class="fa fa-plus-square" aria-hidden="true" style="font-size:4em; color:#663399;"></i>
+            </div>
+            <div class="d-flex flex-row w-100 align-items-end justify-content-center h-100 m-2 p-2">
+              To start a fresh account which will need registering with Exscudo.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

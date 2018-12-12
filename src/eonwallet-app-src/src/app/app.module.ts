@@ -27,6 +27,10 @@ import { AccountSettingsComponent } from './wallet-overview/account-settings/acc
 import { PasswordComponent } from './wallet-overview/password/password.component';
 import { KeyDetailsComponent } from './wallet-overview/key-details/key-details.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { SidePanelComponent } from './core/side-panel/side-panel.component';
+import { MainMenuComponent } from './main-menu/main-menu.component';
+import { UnauthorisedComponent } from './unauthorised/unauthorised.component';
+import { HeaderBarComponent } from './header-bar/header-bar.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -43,7 +47,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     AccountSettingsComponent,
     PasswordComponent,
     KeyDetailsComponent,
-    PortfolioComponent
+    PortfolioComponent,
+    SidePanelComponent,
+    MainMenuComponent,
+    UnauthorisedComponent,
+    HeaderBarComponent
   ],
   exports: [],
   imports: [

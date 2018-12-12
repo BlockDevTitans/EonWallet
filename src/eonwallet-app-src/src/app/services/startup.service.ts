@@ -10,17 +10,15 @@ export class StartupService implements CanActivate {
 
   constructor(private rpc: ElectronService, private router: Router, private accountService: AccountService) {
 
-    alert('registering for events within the wallet');
-
     this.rpc.registerForEvents('wallet', (result) => {
 
       console.log('event fired', result);
     });
 
-    this.canActivate().then((res) => {
-      console.log('*************', res);
+    // this.canActivate().then((res) => {
+    //   console.log('*************', res);
 
-    });
+    // });
 
     this.rpc.sendCommand('wallet.GetState', [], (returnValue: Array<any>) => {
       // this.rpc.sendCommand('wallet.AddWallet', ['name', 'test'], (returnV) => {
@@ -28,7 +26,7 @@ export class StartupService implements CanActivate {
       // });
     });
 
-    this.rpc.sendCommand('wallet.GetAccountInformation', ['EON-ZPAX2-EMFJ5-HKBTX'],
+    this.rpc.sendCommand('wallet.GetAccountInformation', ['EON-WXUUQ-55MUP-QCJHN'],
       (returnValue) => { console.log('getAccountInfo', returnValue); },
       () => { alert('error'); });
   }

@@ -1,0 +1,18 @@
+<div *ngIf="!isExpanded" class="filter-pane d-flex flex-column h-100 shadow-lg" style="width:40px; background-color:#27DBD0">
+  <div class="header d-flex flex-row justify-content-center align-items-center" style="height: 40px; box-shadow: 2px 2px 4px -2px rgba(0, 0, 0, 0.3);">
+    <em class="fa fa-angle-double-left icon-sm text-white" (click)="isExpanded=true"></em>
+  </div>
+  <div class="h-100 d-flex flex-column justify-content-center align-items-center">
+    <span class="text-white" style="text-orientation: sideways;writing-mode: vertical-lr;">{{title}}</span>
+  </div>
+</div>
+
+<div *ngIf="isExpanded" class="filter-pane d-flex flex-column h-100 shadow-lg bg-white" style="width:300px;">
+  <div class="header d-flex flex-row justify-content-start align-items-center pr-3" style="height: 40px; background-color:#27DBD0">
+    <em class=" fa fa-angle-double-right icon-sm text-white pl-3" (click)="isExpanded=false"></em>
+    <span class="ml-3 text-white">{{title}}</span>
+  </div>
+  <div class="p-3" style="height:calc(100% - 40px); overflow:auto">
+    <ng-content></ng-content>
+  </div>
+</div>
