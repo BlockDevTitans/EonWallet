@@ -4,7 +4,6 @@ import '../polyfills';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -31,6 +30,10 @@ import { SidePanelComponent } from './core/side-panel/side-panel.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { UnauthorisedComponent } from './unauthorised/unauthorised.component';
 import { HeaderBarComponent } from './header-bar/header-bar.component';
+import { LoadingDotsComponent } from './loading-dots/loading-dots.component';
+import { SplashScreenComponent } from './splash-screen/splash-screen.component';
+import { NewSetupPageComponent } from './new-setup-page/new-setup-page.component';
+import { NewAccountComponent } from './new-setup-page/new-account/new-account.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -51,7 +54,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     SidePanelComponent,
     MainMenuComponent,
     UnauthorisedComponent,
-    HeaderBarComponent
+    HeaderBarComponent,
+    LoadingDotsComponent,
+    SplashScreenComponent,
+    NewSetupPageComponent,
+    NewAccountComponent
   ],
   exports: [],
   imports: [
@@ -63,7 +70,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     CoreModule,
     ReactiveFormsModule,
-    Ng4LoadingSpinnerModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

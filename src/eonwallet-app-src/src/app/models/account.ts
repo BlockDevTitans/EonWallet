@@ -1,6 +1,6 @@
 export interface IAccount {
-    name: string;
     accountId: string;
+    publickey: string;
 }
 
 export interface WalletAccount {

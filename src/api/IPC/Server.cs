@@ -112,7 +112,7 @@ namespace api.IPC
 			while (ex.InnerException != null)
 			{
 				ex = ex.InnerException;
-			}
+			} 
 			service?.OutQueue.Add(new Message { type = type, data = ex });
 		}
 

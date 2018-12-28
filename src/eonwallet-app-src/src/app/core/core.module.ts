@@ -9,8 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { WizardDirective } from '../directives/wizardDirective.directive';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { NewAccountComponent } from '../account-creation-process/new-account/new-account.component';
-import { SetupComponent } from '../account-creation-process/setup.component';
+
 
 @NgModule({
   entryComponents: [],
@@ -21,10 +20,8 @@ import { SetupComponent } from '../account-creation-process/setup.component';
   ],
   declarations: [
     WizardDirective,
-    NewAccountComponent,
     NavigationBarComponent,
-    HomeComponent,
-    SetupComponent
+    HomeComponent
   ],
   exports: [
     RouterModule,

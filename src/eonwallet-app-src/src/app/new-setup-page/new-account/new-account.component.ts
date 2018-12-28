@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AccountService } from '../../services/account.service';
+import { State } from '../../models/state.model';
 
 
 @Component({
@@ -10,25 +11,24 @@ import { AccountService } from '../../services/account.service';
   styleUrls: ['./new-account.component.scss']
 })
 export class NewAccountComponent implements OnInit {
-
-  @Input() showNewAccount = false;
-  @Input() allowCancel = true;
   meterReadingForm: FormGroup;
-
 
   constructor(private accountService: AccountService, private readonly router: Router,
     private readonly route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.accountService.onStateUpdate.subscribe((e: State) => {
+      console.log('***', e);
+      if (e === State.Unauthorised) {
+        alert('unauthorised');
+      }
+    });
+
     this.meterReadingForm = new FormGroup({
       accountName: new FormControl(''),
       password: new FormControl('')
     });
-  }
-
-
-  newAccount(event) {
-    this.showNewAccount = true;
   }
 
   createAccount() {
@@ -36,9 +36,5 @@ export class NewAccountComponent implements OnInit {
     this.accountService.create(this.meterReadingForm.value.accountName, this.meterReadingForm.value.password).then(() => {
       this.router.navigate([`overview`]);
     });
-  }
-
-  cancelCreation() {
-    this.showNewAccount = false;
   }
 }

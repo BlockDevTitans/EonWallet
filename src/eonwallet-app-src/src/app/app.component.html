@@ -1,8 +1,11 @@
 <div class="app-container d-block float-left h-100 w-100">
-    <app-header-bar class="float-left w-100"></app-header-bar>
-    <router-outlet></router-outlet>
+    <app-header-bar></app-header-bar>
+    <!-- <router-outlet></router-outlet> -->
+    <app-splash-screen *ngIf="isLoading"></app-splash-screen>
 </div>
 
+
+<!-- <app-unauthorised *ngIf="isUnauthorised"></app-unauthorised> -->
 
 <!-- <div class="d-flex flex-row w-100 h-100" style="background:white;">
 
