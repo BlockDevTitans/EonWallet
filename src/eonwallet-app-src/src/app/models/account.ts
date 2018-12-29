@@ -1,5 +1,5 @@
 export interface IAccount {
-    accountId: string;
+    accountid: string;
     publickey: string;
 }
 

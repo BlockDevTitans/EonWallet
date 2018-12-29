@@ -4,27 +4,33 @@ import { WalletOverviewComponent } from '../wallet-overview/wallet-overview.comp
 import { MainMenuComponent } from '../main-menu/main-menu.component';
 import { UnauthorisedComponent } from '../unauthorised/unauthorised.component';
 import { NewSetupPageComponent } from '../new-setup-page/new-setup-page.component';
+import { NewAccountComponent } from '../new-setup-page/new-account/new-account.component';
 
 // import { WalletModule } from '../wallet/wallet.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: NewSetupPageComponent
-  },
-  {
-    path: 'account-creation',
     component: UnauthorisedComponent
   },
   {
+    path: 'account-creation',
+    component: NewAccountComponent
+  },
+  {
+    path: 'unauthorised/:index',
+    component: UnauthorisedComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'overview',
-    component: WalletOverviewComponent,
+    component: UnauthorisedComponent,
     pathMatch: 'full'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
   exports: [RouterModule]
 })
 export class CoreRoutingModule { }

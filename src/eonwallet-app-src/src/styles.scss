@@ -74,6 +74,10 @@ body{
   .spinner {
     display: block;
   }
+
+  .height-with-nav-bar{
+    height: calc(100% - 59px)
+}
   
   .spinner div {
     width: 6px;

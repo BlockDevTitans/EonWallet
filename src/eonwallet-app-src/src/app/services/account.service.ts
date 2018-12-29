@@ -38,7 +38,7 @@ export class AccountService {
         });
         if (res.length > 0) {
           alert('greater than zero');
-          const currentAccount = res[0].accountId;
+          const currentAccount = res[0].accountid;
           this._currentAccount.next(currentAccount);
           const accountDetails = { accountId: currentAccount };
           this.rpc.sendCommand('wallet.GetAccountInformation', ['EON-8Y5K8-49GEA-T7UFR'], (retValue) => {

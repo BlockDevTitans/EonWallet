@@ -1,6 +1,6 @@
 <div class="app-container d-block float-left h-100 w-100">
     <app-header-bar></app-header-bar>
-    <!-- <router-outlet></router-outlet> -->
+    <router-outlet *ngIf="!isLoading"></router-outlet>
     <app-splash-screen *ngIf="isLoading"></app-splash-screen>
 </div>
 

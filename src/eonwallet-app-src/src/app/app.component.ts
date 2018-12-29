@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ElectronService } from './providers/electron.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AppConfig } from '../environments/environment';
-import { StartupService } from './services/startup.service';
+import { StartupService, IStateUpdateModel } from './services/startup.service';
 import { State } from './models/state.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,17 +15,20 @@ import { State } from './models/state.model';
 export class AppComponent {
   eoncoreSettings = undefined;
   isLoading = true;
-  isUnauthorised = false;
 
-  constructor(public electronService: ElectronService, private translate: TranslateService, private startupService: StartupService) {
+  constructor(public electronService: ElectronService, private translate: TranslateService,
+    private startupService: StartupService, private router: Router) {
+
     translate.setDefaultLang('en');
-    this.startupService.onStateUpdate.subscribe((e: State) => {
+    this.startupService.onStateUpdate.subscribe((e: IStateUpdateModel) => {
       console.log('***', e);
-      if (e === State.Unauthorised) {
+      if (e.state === State.Unauthorised) {
         console.log('is unauthrised!');
-        this.isUnauthorised = true;
+        this.router.navigate(['unauthorised', e.index]);
       }
-
+      if (e.state === State.New_Account) {
+        this.router.navigate(['account-creation']);
+      }
       this.isLoading = false;
     });
 

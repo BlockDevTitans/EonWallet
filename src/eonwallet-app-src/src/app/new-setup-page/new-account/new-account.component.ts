@@ -17,13 +17,13 @@ export class NewAccountComponent implements OnInit {
     private readonly route: ActivatedRoute) { }
 
   ngOnInit() {
-
-    this.accountService.onStateUpdate.subscribe((e: State) => {
-      console.log('***', e);
-      if (e === State.Unauthorised) {
-        alert('unauthorised');
-      }
-    });
+    alert('new wallet comp called');
+    // this.accountService.onStateUpdate.subscribe((e: State) => {
+    //   console.log('***', e);
+    //   if (e === State.Unauthorised) {
+    //     alert('unauthorised');
+    //   }
+    // });
 
     this.meterReadingForm = new FormGroup({
       accountName: new FormControl(''),
