@@ -3,6 +3,7 @@ import { IAccount, WalletAccount } from '../models/account';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ElectronService } from '../providers/electron.service';
 import { State } from '../models/state.model';
+import { StartupService } from './startup.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class AccountService {
   public readonly CurrentAccount: Observable<string> = this._currentAccount.asObservable();
   public readonly AccountDetail: Observable<WalletAccount> = this._accountDetails.asObservable();
 
-  constructor(private rpc: ElectronService) {
+  constructor(private rpc: ElectronService, private start: StartupService) {
   }
 
   public init(): Promise<void> {
@@ -60,23 +61,5 @@ export class AccountService {
     });
   }
 
-  public create(name: string, password: string): Promise<IAccount> {
-    return new Promise((resolve) => {
-      this.rpc.sendCommand('wallet.AddWallet', [name, password], (returnValue) => {
-        console.log('***************', returnValue);
-        this._currentAccount.next(returnValue);
-        this.rpc.sendCommand('wallet.GetAccountInformation', [returnValue.accountdetails.accountid],
-          (retValue) => {
-            console.log('getAccountInfo', returnValue);
-          },
-          (e) => {
-            if (e.Message === 'Unauthorized') {
-              this.onStateUpdate.emit(State.Unauthorised);
-            }
-          });
-        this._exists.next(false);
-        resolve();
-      });
-    });
-  }
+
 }

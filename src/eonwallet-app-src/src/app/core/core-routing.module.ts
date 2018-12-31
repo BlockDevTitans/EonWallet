@@ -10,10 +10,6 @@ import { NewAccountComponent } from '../new-setup-page/new-account/new-account.c
 
 const routes: Routes = [
   {
-    path: '',
-    component: UnauthorisedComponent
-  },
-  {
     path: 'account-creation',
     component: NewAccountComponent
   },
@@ -24,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'overview',
-    component: UnauthorisedComponent,
+    component: WalletOverviewComponent,
     pathMatch: 'full'
   }
 ];

@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AccountService } from '../../services/account.service';
 import { State } from '../../models/state.model';
+import { StartupService } from '../../services/startup.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { State } from '../../models/state.model';
 export class NewAccountComponent implements OnInit {
   meterReadingForm: FormGroup;
 
-  constructor(private accountService: AccountService, private readonly router: Router,
+  constructor(private accountService: StartupService, private readonly router: Router,
     private readonly route: ActivatedRoute) { }
 
   ngOnInit() {

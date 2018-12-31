@@ -19,8 +19,9 @@ export class UnauthorisedComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(params => {
       console.log('params', params);
       const id = +params['index'];
+      console.log('unauth account index', id);
       this.wallet = this.startupService.getAccount(id);
-      console.log('my wallet', this.wallet, this.wallet.accountdetails, this.wallet.accountdetails.publickey);
+      //  console.log('my wallet', this.wallet, this.wallet.accountdetails, this.wallet.accountdetails.publickey);
       this.cd.markForCheck();
       this.cd.detectChanges();
     });

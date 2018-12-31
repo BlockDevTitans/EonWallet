@@ -23,7 +23,6 @@ export class AppComponent {
     this.startupService.onStateUpdate.subscribe((e: IStateUpdateModel) => {
       console.log('***', e);
       if (e.state === State.Unauthorised) {
-        console.log('is unauthrised!');
         this.router.navigate(['unauthorised', e.index]);
       }
       if (e.state === State.New_Account) {

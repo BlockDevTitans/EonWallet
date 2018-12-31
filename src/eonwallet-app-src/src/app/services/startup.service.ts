@@ -1,10 +1,9 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
 import { ElectronService } from '../providers/electron.service';
-import { AccountService } from './account.service';
 import { State } from '../models/state.model';
 import { IWallet } from '../models/wallet.model';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { IAccount } from '../models/account';
 
 export interface IStateUpdateModel {
   state: State;
@@ -14,59 +13,64 @@ export interface IStateUpdateModel {
   providedIn: 'root'
 })
 export class StartupService {
+  private _walletsArray: Array<IWallet> = new Array<IWallet>();
+  private _wallets: BehaviorSubject<Array<IWallet>> = new BehaviorSubject(this._walletsArray);
 
   public onStateUpdate: EventEmitter<IStateUpdateModel> = new EventEmitter();
-  private _wallets: BehaviorSubject<Array<IWallet>> = new BehaviorSubject(Array<IWallet>());
   public readonly Accounts: Observable<Array<any>> = this._wallets.asObservable();
 
   constructor(private rpc: ElectronService) {
+    this.Accounts.subscribe(x => this.checkIfAuthorised(this._wallets.value));
+
     this.rpc.registerForEvents('wallet', (result: Array<IWallet>) => {
-      this._wallets.next(result);
-      console.log('event fired', result);
+      this.checkIfAuthorised(this._walletsArray);
+    });
+  }
+
+  public create(name: string, password: string): Promise<IAccount> {
+    return new Promise((resolve) => {
+      this.rpc.sendCommand('wallet.AddWallet', [name, password], (returnValue) => {
+        this._walletsArray.push(returnValue);
+      });
+    });
+  }
+
+  private checkIfAuthorised(result: any) {
+    if (!result || result.length === 0) { return; }
+    result.forEach((v, index) => {
+      this.rpc.sendCommand('wallet.GetAccountInformation', [v.accountdetails.accountid],
+        (retValue) => {
+          console.log('getAccountIynfo', result);
+        },
+        (e) => {
+          if (e.Message === 'Unauthorized') {
+            this.onStateUpdate.emit({ state: State.Unauthorised, index: index });
+          }
+        });
     });
   }
 
   public getAccount(index: number): IWallet {
-    console.log('**,', this._wallets.value, index);
     return this._wallets.value[index];
   }
 
   public init() {
     this.rpc.sendCommand('wallet.GetState', [], (returnValue: any) => {
-      console.log('wallet,getstate ->', returnValue);
       if (returnValue.Wallets.length === 0) {
-        alert('its a new wallet');
-        this.onStateUpdate.emit({ state: State.New_Account });
+        this.onStateUpdate.emit({ state: State.New_Account, index: 0 });
         return;
       }
-
-      this._wallets.next(returnValue.Wallets);
-
-      returnValue.Wallets.forEach(((v, index) => {
-        this.rpc.sendCommand('wallet.GetAccountInformation', [v.accountdetails.accountid],
-          (retValue) => {
-            console.log('getAccountIynfo', returnValue);
-          },
+      returnValue.Wallets.forEach((element, index) => {
+        const wallet = Object.assign({}, element);
+        this._walletsArray.push(wallet);
+        this.rpc.sendCommand('wallet.GetAccountInformation', [wallet.accountdetails.accountid],
+          (retValue) => { console.log('getAccountInfo', returnValue); },
           (e) => {
             if (e.Message === 'Unauthorized') {
               this.onStateUpdate.emit({ state: State.Unauthorised, index: index });
             }
           });
-      }));
-      // returnValue.forEach((v) => {
-      //   console.log(v.accountdetails);
-      //   this.rpc.sendCommand('wallet.GetAccountInformation', [v.accountdetails.accountid],
-      //     (retValue) => { console.log('getAccountInfo', returnValue); },
-      //     (e) => {
-      //       console.log('***********', e);
-      //       if (e.Message === 'Unauthorized') {
-      //         this.onStateUpdate.emit(State.Unauthorised);
-      //       }
-      //     });
-      // });
-      // this.rpc.sendCommand('wallet.AddWallet', ['name', 'test'], (returnV) => {
-      //   console.log(returnV);
-      // });
+      });
     });
   }
 }

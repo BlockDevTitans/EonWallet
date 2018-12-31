@@ -1,5 +1,5 @@
 export enum State {
-    New_Account,
+    New_Account = 0,
     Unauthorised,
     Ok
 }
